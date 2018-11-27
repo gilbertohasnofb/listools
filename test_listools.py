@@ -13,6 +13,8 @@ def test_flatten():
     expected_result = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     assert listools.flatten(alist) == expected_result
 
+    assert listools.flatten([]) == []
+
 
 def test_partial_flatten():
     alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
@@ -27,6 +29,8 @@ def test_partial_flatten():
     alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
     expected_result = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     assert listools.partial_flatten(alist, depth=3) == expected_result
+
+    assert listools.partial_flatten([]) == []
 
 
 def test_concat_flatten():
@@ -53,6 +57,8 @@ def test_concat_flatten():
     alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
     assert listools.concat_flatten(alist) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+    assert listools.concat_flatten([], []) == []
+
 
 def test_sum_flatten():
     alist = [[1, 2], [3, 4], [5, 6]]
@@ -66,6 +72,9 @@ def test_sum_flatten():
 
     alist = [1, [2.1, [3, [4.1]]]]
     assert listools.sum_flatten(alist) == 10.2
+
+    alist = []
+    assert listools.sum_flatten(alist) == 0
 
 
 def test_len_flatten():
