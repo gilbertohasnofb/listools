@@ -10,6 +10,7 @@ This library contains the following functions:
 * `listools.partial_flatten(input_list[, depth])`
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
+* `listools.len_flatten(input_list)`
 * `listools.zip_cycle(*input_iters)`
 * `listools.zip_cycle_flatten(*input_lists)`
 

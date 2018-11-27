@@ -68,6 +68,17 @@ def test_sum_flatten():
     assert listools.sum_flatten(alist) == 10.2
 
 
+def test_len_flatten():
+    alist = [[1, 2], [3, 4], [5, 6]]
+    assert listools.len_flatten(alist) == 6
+
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    assert listools.len_flatten(alist) == 8
+
+    alist = []
+    assert listools.len_flatten(alist) == 0
+
+
 def test_zip_cycle():
     alist = [1, 2]
     blist = [4, 5, 6, 7, 8]
