@@ -37,7 +37,7 @@ All functions contain a `__doc__` attribute with usage instructions.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 def flatten(input_list: list, depth: int = 1) -> list:
@@ -157,3 +157,33 @@ def concat_flatten(*input_lists: list) -> list:
     for input_list in input_lists:
         output_list += (completely_flatten(input_list))
     return output_list
+
+
+def sum_flatten(input_list: list):
+    r"""listools.sum_flatten(input_list)
+
+    Sums all values of the list, including any nested subslists. Usage:
+
+    >>> alist = [[1, 2], [3, 4], [5, 6]]
+    >>> sum_flatten(alist)
+    21
+
+    >>> alist = [1, [2, [3]]]
+    >>> sum_flatten(alist)
+    6
+
+    The list can also be made out of floats:
+
+    >>> alist = [1.1, [2.2, [3.3]]]
+    >>> sum_flatten(alist)
+    6.6
+
+    Or it can contain a mix of integers and floats:
+
+    >>> alist = [1, [2.1, [3, [4.1]]]]
+    >>> sum_flatten(alist)
+    10.2
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError
+    return sum(completely_flatten(input_list))

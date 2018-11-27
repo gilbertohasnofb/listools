@@ -44,3 +44,14 @@ def test_concat_flatten():
     assert listools.concat_flatten(alist, blist, clist) == expected_result
     alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
     assert listools.concat_flatten(alist) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def test_sum_flatten():
+    alist = [[1, 2], [3, 4], [5, 6]]
+    assert listools.sum_flatten(alist) == 21
+    alist = [1, [2, [3]]]
+    assert listools.sum_flatten(alist) == 6
+    alist = [1.1, [2.2, [3.3]]]
+    assert listools.sum_flatten(alist) == 6.6
+    alist = [1, [2.1, [3, [4.1]]]]
+    assert listools.sum_flatten(alist) == 10.2
