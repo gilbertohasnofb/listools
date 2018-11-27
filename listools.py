@@ -174,23 +174,23 @@ def sum_flatten(input_list: list):
     Sums all values of the list, including any nested subslists. Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
-    >>> sum_flatten(alist)
+    >>> listools.sum_flatten(alist)
     21
 
     >>> alist = [1, [2, [3]]]
-    >>> sum_flatten(alist)
+    >>> listools.sum_flatten(alist)
     6
 
     The list can also be made out of floats:
 
     >>> alist = [1.1, [2.2, [3.3]]]
-    >>> sum_flatten(alist)
+    >>> listools.sum_flatten(alist)
     6.6
 
     Or it can contain a mix of integers and floats:
 
     >>> alist = [1, [2.1, [3, [4.1]]]]
-    >>> sum_flatten(alist)
+    >>> listools.sum_flatten(alist)
     10.2
     """
     if not (isinstance(input_list, list)):
@@ -219,7 +219,7 @@ def len_flatten(input_list: list) -> int:
     return len(flatten(input_list))
 
 
-def zip_cycle(*input_iters):
+def zip_cycle(*input_iters) -> tuple:
     r"""listools.zip_cycle(*input_iters)
 
     Similar to zip but cycles smaller lists or iterables until the largerst one
@@ -277,7 +277,7 @@ def zip_cycle(*input_iters):
         yield tuple(output_list)
 
 
-def zip_cycle_flatten(*input_lists):
+def zip_cycle_flatten(*input_lists) -> tuple:
     r"""listools.zip_cycle_flatten(*input_lists)
 
     This function is very nearly identical to listools.zip_cycle except that it
