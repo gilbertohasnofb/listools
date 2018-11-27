@@ -9,8 +9,8 @@
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
 #
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 #
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -37,7 +37,7 @@ All functions contain a `__doc__` attribute with usage instructions.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 def flatten(input_list: list, depth: int = 1) -> list:
@@ -53,8 +53,8 @@ def flatten(input_list: list, depth: int = 1) -> list:
     >>> listools.flatten(alist)
     [1, 2, 3, [[4], 5]]
 
-    Use the depth argument (which should always be an integer) when the sublists
-    themselves also contains sublists:
+    Use the depth argument (which should always be an integer) when any of the
+    sublists themselves also contains sublists:
 
     >>> alist = [1, 2, [3, [4, 5]]]
     >>> listools.flatten(alist, depth=2)
@@ -62,6 +62,10 @@ def flatten(input_list: list, depth: int = 1) -> list:
 
     >>> alist = [1, 2, [3, [4, 5]]]
     >>> listools.flatten(alist, depth=3)
+    [1, 2, 3, 4, 5]
+
+    >>> alist = [1, 2, [3, [4, 5]]]
+    >>> listools.flatten(alist, depth=4)
     [1, 2, 3, 4, 5]
 
     Notice that the list themselves can be made out of any datatypes:
@@ -74,14 +78,14 @@ def flatten(input_list: list, depth: int = 1) -> list:
         raise TypeError
     aux_list = input_list[:]
     for _ in range(depth):
-        output = []
+        output_list = []
         for element in aux_list:
             if not isinstance(element, list):
-                output.append(element)
+                output_list.append(element)
             else:
-                output += element
-        aux_list = output[:]
-    return output
+                output_list += element
+        aux_list = output_list[:]
+    return output_list
 
 
 def completely_flatten(input_list: list, _aux_list=None) -> list:
@@ -115,3 +119,41 @@ def completely_flatten(input_list: list, _aux_list=None) -> list:
         else:
             _aux_list.append(element)
     return _aux_list
+
+
+def concat_flatten(*input_lists: list) -> list:
+    r"""listools.concat_flatten(*input_lists)
+
+    Completely flattens and concatenates an arbitrary number of input lists
+    containing any number of nested subslists. Usage:
+
+    >>> alist = [[1, 2], [3, 4]]
+    >>> blist = [[5, 6], [7, 8]]
+    >>> listools.concat_flatten(alist, blist)
+    [1, 2, 3, 4, 5, 6, 7, 8]
+
+    >>> alist = [1, [2, [3]]]
+    >>> blist = [[[4], 5], 6]
+    >>> listools.concat_flatten(alist, blist)
+    [1, 2, 3, 4, 5, 6]
+
+    >>> alist = [[1, 2], [3, 4]]
+    >>> blist = [[5, 6], [7, 8]]
+    >>> clist = [[[9], 10], 11]
+    >>> listools.concat_flatten(alist, blist, clist)
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    Notice that the list themselves can be made out of any datatypes:
+
+    >>> alist = [1, [2.2, True]]
+    >>> blist = ['foo', [(1, 4), None]]
+    >>> clist = [(3+2j), {'a': 1}]
+    >>> listools.concat_flatten(alist, blist, clist)
+    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    """
+    if not all(isinstance(input_list, list) for input_list in input_lists):
+        raise TypeError
+    output_list = []
+    for input_list in input_lists:
+        output_list += (completely_flatten(input_list))
+    return output_list

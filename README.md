@@ -8,6 +8,7 @@ This library contains the following functions:
 
 * `listools.flatten(input_list[, depth])`
 * `listools.completely_flatten(input_list)`
+* `listools.concat_flatten(*input_lists)`
 
 All functions contain a `__doc__` attribute with usage instructions.
 
