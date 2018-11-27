@@ -26,7 +26,7 @@ setup(
     name='listools',
     description='listools: a Python 3 library of list functions',
     author='Gilberto Agostinho',
-    author_email='gilbertohasnofb@gmail.com'
+    author_email='gilbertohasnofb@gmail.com',
     version=listools.__version__,
     url='https://github.com/gilbertohasnofb/listools',
     license='MIT',

@@ -1,6 +1,10 @@
 # listools
 
-This library provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. It is contained in only one Python file, so it can be easily copied into your project. (The copyright and license notice must be retained.)
+This library provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. It is contained in a single Python file, so it can be easily copied into your project (the copyright and license notice must be retained). Alternatively, to install it using `pip`, use the command below:
+
+`pip install git+https://github.com/gilbertohasnofb/listools`
+
+Note that you might need to use `pip3` instead of `pip`.
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools. The code can also be found there.
 
