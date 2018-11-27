@@ -26,7 +26,7 @@ a single Python file, so it can be easily copied into your project (the
 copyright and license notice must be retained). Alternatively, to install it
 using `pip`, use the command below:
 
-`pip install git+https://github.com/gilbertohasnofb/listools`
+`pip install listools`
 
 Note that you might need to use `pip3` instead of `pip`.
 
@@ -50,7 +50,7 @@ This library is published under the MIT License.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "0.1.4"
+__version__ = "1.0.0"
 
 
 def flatten(input_list: list) -> list:
