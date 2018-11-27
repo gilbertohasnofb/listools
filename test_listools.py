@@ -106,3 +106,40 @@ def test_zip_cycle():
     assert zip_cycle_iter.__next__() == (1,)
     assert zip_cycle_iter.__next__() == (2,)
     assert zip_cycle_iter.__next__() == (3,)
+
+
+def test_zip_cycle_flatten():
+    alist = [1, 2]
+    blist = [4, [5, 6, 7], 8]
+    zip_cycle_flatten_iter = listools.zip_cycle_flatten(alist, blist)
+    assert zip_cycle_flatten_iter.__next__() == (1, 4)
+    assert zip_cycle_flatten_iter.__next__() == (2, 5)
+    assert zip_cycle_flatten_iter.__next__() == (1, 6)
+    assert zip_cycle_flatten_iter.__next__() == (2, 7)
+    assert zip_cycle_flatten_iter.__next__() == (1, 8)
+
+    a = [1, 2]
+    b = [1, [2, 3]]
+    c = [[[1], 2, 3], 4]
+    d = [1, [2, [3, 4]], 5]
+    zip_cycle_flatten_iter = listools.zip_cycle_flatten(a, b, c, d)
+    assert zip_cycle_flatten_iter.__next__() == (1, 1, 1, 1)
+    assert zip_cycle_flatten_iter.__next__() == (2, 2, 2, 2)
+    assert zip_cycle_flatten_iter.__next__() == (1, 3, 3, 3)
+    assert zip_cycle_flatten_iter.__next__() == (2, 1, 4, 4)
+    assert zip_cycle_flatten_iter.__next__() == (1, 2, 1, 5)
+
+    alist = [1, 2.0, 'foo', True, None]
+    blist = [False, 'bar', (1, 4)]
+    zip_cycle_flatten_iter = listools.zip_cycle_flatten(alist, blist)
+    assert zip_cycle_flatten_iter.__next__() == (1, False)
+    assert zip_cycle_flatten_iter.__next__() == (2.0, 'bar')
+    assert zip_cycle_flatten_iter.__next__() == ('foo', (1, 4))
+    assert zip_cycle_flatten_iter.__next__() == (True, False)
+    assert zip_cycle_flatten_iter.__next__() == (None, 'bar')
+
+    alist = [1, [2, [3]]]
+    zip_cycle_flatten_iter = listools.zip_cycle_flatten(alist)
+    assert zip_cycle_flatten_iter.__next__() == (1,)
+    assert zip_cycle_flatten_iter.__next__() == (2,)
+    assert zip_cycle_flatten_iter.__next__() == (3,)

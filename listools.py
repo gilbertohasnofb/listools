@@ -35,12 +35,13 @@ This library contains the following functions:
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
 * `listools.zip_cycle(*input_iters)`
+* `listools.zip_cycle_flatten(*input_lists)`
 
 All functions have a `__doc__` attribute with usage instructions.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 
 
 def flatten(input_list: list, depth: int = 1) -> list:
@@ -226,7 +227,7 @@ def zip_cycle(*input_iters):
     2 1 4 4
     1 2 1 5
 
-    In fact, it works with any iterble containing any datatypes:
+    In fact, it works with any iterable containing any datatypes:
 
     >>> a = (1, 2, 3)
     >>> b = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
@@ -251,4 +252,62 @@ def zip_cycle(*input_iters):
         output_list = []
         for input_iter in input_iters:
             output_list.append(input_iter[i % len(input_iter)])
+        yield tuple(output_list)
+
+
+def zip_cycle_flatten(*input_lists):
+    r"""listools.zip_cycle_flatten(*input_lists)
+
+    This function is very nearly identical to listools.zip_cycle except that it
+    also flattens all lists before zipping and cycling them. Usage:
+
+    >>> alist = [1, 2]
+    >>> blist = [4, [5, 6, 7], 8]
+    >>> for i, j in listools.zip_cycle_flatten(alist, blist):
+    ...     print(i, j)
+    1 4
+    2 5
+    1 6
+    2 7
+    1 8
+
+    It also works with multiple lists:
+
+    >>> a = [1, 2]
+    >>> b = [1, [2, 3]]
+    >>> c = [[[1], 2, 3], 4]
+    >>> d = [1, [2, [3, 4]], 5]
+    >>> for i, j, k, l in listools.zip_cycle_flatten(a, b, c, d):
+    ...     print(i, j, k, l)
+    1 1 1 1
+    2 2 2 2
+    1 3 3 3
+    2 1 4 4
+    1 2 1 5
+
+    It also works with lists containing any datatypes:
+
+    >>> alist = [1, 2.0, 'foo', True, None]
+    >>> blist = [False, 'bar', (1, 4)]
+    >>> for i, j in listools.zip_cycle_flatten(alist, blist):
+    ...     print(i, j)
+    1 False
+    2.0 bar
+    foo (1, 4)
+    True False
+    None bar
+
+    Note that unlike listools.zip_cycle(), this function accepts only lists as
+    input due to its flatenning function.
+    """
+    if not all(isinstance(input_list, list) for input_list in input_lists):
+        raise TypeError('*input_lists should be one or more \'list\' objects')
+    flatten_lists = []
+    for input_list in input_lists:
+        flatten_lists.append(completely_flatten(input_list))
+    aux = max([len(flatten_list) for flatten_list in flatten_lists])
+    for i in range(aux):
+        output_list = []
+        for flatten_list in flatten_lists:
+            output_list.append(flatten_list[i % len(flatten_list)])
         yield tuple(output_list)
