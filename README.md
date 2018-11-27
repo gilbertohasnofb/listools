@@ -11,6 +11,6 @@ This library contains the following functions:
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
 
-All functions contain a `__doc__` attribute with usage instructions.
+All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.

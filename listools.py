@@ -32,8 +32,10 @@ This library contains the following functions:
 
 * `listools.flatten(input_list[, depth])`
 * `listools.completely_flatten(input_list)`
+* `listools.concat_flatten(*input_lists)`
+* `listools.sum_flatten(input_list)`
 
-All functions contain a `__doc__` attribute with usage instructions.
+All functions have a `__doc__` attribute with usage instructions.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
