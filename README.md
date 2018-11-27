@@ -10,6 +10,7 @@ This library contains the following functions:
 * `listools.completely_flatten(input_list)`
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
+* `listools.zip_cycle(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
