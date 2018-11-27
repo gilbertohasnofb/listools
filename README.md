@@ -6,8 +6,8 @@ Bugs can be reported to https://github.com/gilbertohasnofb/listools. The code ca
 
 This library contains the following functions:
 
-* `listools.flatten(input_list[, depth])`
-* `listools.completely_flatten(input_list)`
+* `listools.flatten(input_list)`
+* `listools.partial_flatten(input_list[, depth])`
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
 * `listools.zip_cycle(*input_iters)`

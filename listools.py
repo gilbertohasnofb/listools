@@ -30,8 +30,8 @@ can also be found there.
 
 This library contains the following functions:
 
-* `listools.flatten(input_list[, depth])`
-* `listools.completely_flatten(input_list)`
+* `listools.flatten(input_list)`
+* `listools.partial_flatten(input_list[, depth])`
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
 * `listools.zip_cycle(*input_iters)`
@@ -44,32 +44,67 @@ __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
 __version__ = "0.1.4"
 
 
-def flatten(input_list: list, depth: int = 1) -> list:
-    r"""listools.flatten(input_list[, depth])
+def flatten(input_list: list) -> list:
+    r"""listools.flatten(input_list)
 
-    Flattens a list containing subslists as elements. Usage:
+    Completely flattens a list containing any number of nested subslists into a
+    one dimensional list. It is equivalent to listools.partial_flatten() with
+    an infinitely large depth. Usage:
 
     >>> alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
     >>> listools.flatten(alist)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    >>> alist = [1, 2, [3, [[4], 5]]]
+    >>> alist = [1, 2, [3, [4, 5]]]
     >>> listools.flatten(alist)
+    [1, 2, 3, 4, 5]
+
+    Notice that the list themselves can be made out of any datatypes:
+
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> listools.flatten(alist)
+    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    def _flatten_aux(input_list, _aux_list=None):
+        if _aux_list is None:
+            _aux_list = []
+        for element in input_list:
+            if isinstance(element, list):
+                _flatten_aux(element, _aux_list)
+            else:
+                _aux_list.append(element)
+        return _aux_list
+    return _flatten_aux(input_list, _aux_list=None)
+
+
+def partial_flatten(input_list: list, depth: int = 1) -> list:
+    r"""listools.partial_flatten(input_list[, depth])
+
+    Partially flattens a list containing subslists as elements. Usage:
+
+    >>> alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
+    >>> listools.partial_flatten(alist)
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    >>> alist = [1, 2, [3, [[4], 5]]]
+    >>> listools.partial_flatten(alist)
     [1, 2, 3, [[4], 5]]
 
-    Use the depth argument (which should always be an integer) when any of the
-    sublists themselves also contains sublists:
+    Use the depth argument (which should always be an integer) when wanting to
+    flatten nested sublists:
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.flatten(alist, depth=2)
+    >>> listools.partial_flatten(alist, depth=2)
     [1, 2, 3, [4], 5]
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.flatten(alist, depth=3)
+    >>> listools.partial_flatten(alist, depth=3)
     [1, 2, 3, 4, 5]
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.flatten(alist, depth=4)
+    >>> listools.partial_flatten(alist, depth=4)
     [1, 2, 3, 4, 5]
 
     Notice that the list themselves can be made out of any datatypes:
@@ -92,41 +127,6 @@ def flatten(input_list: list, depth: int = 1) -> list:
                 output_list += element
         aux_list = output_list[:]
     return output_list
-
-
-def completely_flatten(input_list: list) -> list:
-    r"""listools.completely_flatten(input_list)
-
-    Completely flattens a list containing any number of nested subslists into a
-    one dimensional list. It is equivalent to listools.flatten() with an
-    infinitely large depth. Usage:
-
-    >>> alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
-    >>> listools.completely_flatten(alist)
-    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-    >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.completely_flatten(alist)
-    [1, 2, 3, 4, 5]
-
-    Notice that the list themselves can be made out of any datatypes:
-
-    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    >>> listools.completely_flatten(alist)
-    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
-    """
-    if not (isinstance(input_list, list)):
-        raise TypeError('input_list should be a \'list\'')
-    def _completely_flatten_aux(input_list, _aux_list=None):
-        if _aux_list is None:
-            _aux_list = []
-        for element in input_list:
-            if isinstance(element, list):
-                _completely_flatten_aux(element, _aux_list)
-            else:
-                _aux_list.append(element)
-        return _aux_list
-    return _completely_flatten_aux(input_list, _aux_list=None)
 
 
 def concat_flatten(*input_lists: list) -> list:
@@ -163,7 +163,7 @@ def concat_flatten(*input_lists: list) -> list:
         raise TypeError('*input_lists should be one or more \'list\' objects')
     output_list = []
     for input_list in input_lists:
-        output_list += (completely_flatten(input_list))
+        output_list += (flatten(input_list))
     return output_list
 
 
@@ -194,7 +194,7 @@ def sum_flatten(input_list: list):
     """
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
-    return sum(completely_flatten(input_list))
+    return sum(flatten(input_list))
 
 
 def zip_cycle(*input_iters):
@@ -304,7 +304,7 @@ def zip_cycle_flatten(*input_lists):
         raise TypeError('*input_lists should be one or more \'list\' objects')
     flatten_lists = []
     for input_list in input_lists:
-        flatten_lists.append(completely_flatten(input_list))
+        flatten_lists.append(flatten(input_list))
     aux = max([len(flatten_list) for flatten_list in flatten_lists])
     for i in range(aux):
         output_list = []
