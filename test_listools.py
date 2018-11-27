@@ -100,3 +100,9 @@ def test_zip_cycle():
     assert zip_cycle_iter.__next__() == (2, 5.0, 'e')
     assert zip_cycle_iter.__next__() == (3, 6.0, 'a')
     assert zip_cycle_iter.__next__() == (1, 7.0, 'b')
+
+    alist = [1, 2, 3]
+    zip_cycle_iter = listools.zip_cycle(a)
+    assert zip_cycle_iter.__next__() == (1,)
+    assert zip_cycle_iter.__next__() == (2,)
+    assert zip_cycle_iter.__next__() == (3,)

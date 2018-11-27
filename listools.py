@@ -40,7 +40,7 @@ All functions have a `__doc__` attribute with usage instructions.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 
 def flatten(input_list: list, depth: int = 1) -> list:
@@ -77,8 +77,10 @@ def flatten(input_list: list, depth: int = 1) -> list:
     >>> listools.flatten(alist, depth=3)
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
-    if not (isinstance(input_list, list) or isinstance(depth, int)):
-        raise TypeError
+    if not isinstance(input_list, list):
+        raise TypeError('input_list should be a \'list\'')
+    if not isinstance(depth, int):
+        raise TypeError('depth should be an \'int\'')
     aux_list = input_list[:]
     for _ in range(depth):
         output_list = []
@@ -91,7 +93,7 @@ def flatten(input_list: list, depth: int = 1) -> list:
     return output_list
 
 
-def completely_flatten(input_list: list, _aux_list=None) -> list:
+def completely_flatten(input_list: list) -> list:
     r"""listools.completely_flatten(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
@@ -113,15 +115,17 @@ def completely_flatten(input_list: list, _aux_list=None) -> list:
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not (isinstance(input_list, list)):
-        raise TypeError
-    if _aux_list is None:
-        _aux_list = []
-    for element in input_list:
-        if isinstance(element, list):
-            completely_flatten(element, _aux_list)
-        else:
-            _aux_list.append(element)
-    return _aux_list
+        raise TypeError('input_list should be a \'list\'')
+    def _completely_flatten_aux(input_list, _aux_list=None):
+        if _aux_list is None:
+            _aux_list = []
+        for element in input_list:
+            if isinstance(element, list):
+                _completely_flatten_aux(element, _aux_list)
+            else:
+                _aux_list.append(element)
+        return _aux_list
+    return _completely_flatten_aux(input_list, _aux_list=None)
 
 
 def concat_flatten(*input_lists: list) -> list:
@@ -155,7 +159,7 @@ def concat_flatten(*input_lists: list) -> list:
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
-        raise TypeError
+        raise TypeError('*input_lists should be one or more \'list\' objects')
     output_list = []
     for input_list in input_lists:
         output_list += (completely_flatten(input_list))
@@ -188,7 +192,7 @@ def sum_flatten(input_list: list):
     10.2
     """
     if not (isinstance(input_list, list)):
-        raise TypeError
+        raise TypeError('input_list should be a \'list\'')
     return sum(completely_flatten(input_list))
 
 
@@ -241,7 +245,7 @@ def zip_cycle(*input_iters):
         try:
             iterator = iter(input_iter)
         except:
-            raise TypeError
+            raise TypeError('*input_iters should a list of \'iter\' objects')
     aux = max([len(input_iter) for input_iter in input_iters])
     for i in range(aux):
         output_list = []
