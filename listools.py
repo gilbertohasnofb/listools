@@ -76,16 +76,16 @@ def flatten(input_list: list) -> list:
     """
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
-    def _flatten_aux(input_list, _aux_list=None):
-        if _aux_list is None:
-            _aux_list = []
+    def _flatten_aux(input_list, aux_list=None):
+        if aux_list is None:
+            aux_list = []
         for element in input_list:
             if isinstance(element, list):
-                _flatten_aux(element, _aux_list)
+                _flatten_aux(element, aux_list)
             else:
-                _aux_list.append(element)
-        return _aux_list
-    return _flatten_aux(input_list, _aux_list=None)
+                aux_list.append(element)
+        return aux_list
+    return _flatten_aux(input_list, aux_list=None)
 
 
 def partial_flatten(input_list: list, depth: int = 1) -> list:
