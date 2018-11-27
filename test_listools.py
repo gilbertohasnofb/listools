@@ -88,6 +88,14 @@ def test_len_flatten():
     assert listools.len_flatten(alist) == 0
 
 
+def test_index_flatten():
+    alist = [[1, 2], [3, 4], [5, 6]]
+    assert listools.index_flatten(3, alist) == 2
+
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    assert listools.index_flatten(None, alist) == 5
+
+
 def test_zip_cycle():
     alist = [1, 2]
     blist = [4, 5, 6, 7, 8]

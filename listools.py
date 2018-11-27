@@ -35,6 +35,7 @@ This library contains the following functions:
 * `listools.concat_flatten(*input_lists)`
 * `listools.sum_flatten(input_list)`
 * `listools.len_flatten(input_list)`
+* `listools.index_flatten(element, input_list)`
 * `listools.zip_cycle(*input_iters)`
 * `listools.zip_cycle_flatten(*input_lists)`
 
@@ -217,6 +218,36 @@ def len_flatten(input_list: list) -> int:
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
     return len(flatten(input_list))
+
+
+def index_flatten(element, input_list: list) -> int:
+    r"""listools.index_flatten(input_list)
+
+    Returns the length of a flatten list (that is, it counts all elements in
+    all of its subslists). Usage:
+
+    >>> alist = [[1, 2], [3, 4], [5, 6]]
+    >>> listools.index_flatten(3, alist)
+    2
+
+    The datatypes of the elements of the list do not matter:
+
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> listools.index_flatten(None, alist)
+    5
+
+    Just like the default behaviour of the index() method of a list,
+    index_flatten raises a ValueError if an element is not found in a list:
+
+    >>> alist = [[1, 2], [3, 4], [5, 6]]
+    >>> listools.index_flatten(7, alist)
+    ValueError: 7 is not in list
+    """
+    if isinstance(element, list):
+        raise TypeError('element cannot be a \'list\'')
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return flatten(input_list).index(element)
 
 
 def zip_cycle(*input_iters) -> tuple:
