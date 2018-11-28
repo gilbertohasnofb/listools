@@ -23,15 +23,10 @@
 """The `listools` library provides utility functions for dealing with lists in
 Python 3. `listools` supports Python version 3.0 and newer. It is contained in
 a single Python file, so it can be easily copied into your project (the
-copyright and license notice must be retained). Alternatively, to install it
-using `pip`, use the command below:
+copyright and license notice must be retained). Alternatively, you can install
+it using `pip install listools`.
 
-`pip install listools`
-
-Note that you might need to use `pip3` instead of `pip`.
-
-Bugs can be reported to https://github.com/gilbertohasnofb/listools. The code
-can also be found there.
+Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library contains the following functions:
 
@@ -50,7 +45,7 @@ This library is published under the MIT License.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 
 def flatten(input_list: list) -> list:

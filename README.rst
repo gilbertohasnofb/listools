@@ -1,15 +1,11 @@
 listools
 ========
 
-|PyPI| |Python versions| |License|
+|PyPI| |Python versions| |License|  |Bug report|
 
-This library provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. It is contained in a single Python file, so it can be easily copied into your project (the copyright and license notice must be retained). Alternatively, to install it using `pip`, use the command below:
+This library provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. It is contained in a single Python file, so it can be easily copied into your project (the copyright and license notice must be retained). Alternatively, you can install it using `pip install listools`.
 
-`pip install listools`
-
-Note that you might need to use `pip3` instead of `pip`.
-
-Bugs can be reported to https://github.com/gilbertohasnofb/listools. The code can also be found there.
+Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library contains the following functions:
 
@@ -31,3 +27,5 @@ This library is published under the MIT License.
 .. |Python versions| image:: https://img.shields.io/pypi/pyversions/listools.svg
 .. |License| image:: https://img.shields.io/github/license/gilbertohasnofb/listools.svg
    :target: https://github.com/gilbertohasnofb/listools/blob/master/LICENSE
+.. |Bug report| image:: https://img.shields.io/badge/bug-report-red.svg
+   :target: https://github.com/gilbertohasnofb/listools/issues
