@@ -27,6 +27,18 @@ except ImportError:
 
 import listools
 
+listools_classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
+
+with open("README.md", "r") as fp:
+    listools_long_description = fp.read()
+
 setup(
     name='listools',
     description='listools: a Python 3 library of list functions',
@@ -36,7 +48,8 @@ setup(
     py_modules=["listools"],
     url='https://github.com/gilbertohasnofb/listools',
     license='MIT',
-    long_description=open('README.md').read(),
+    long_description=listools_long_description,
     tests_require=['pytest'],
+    classifiers=listools_classifiers,
     python_requires='>=3',
 )

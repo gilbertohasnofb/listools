@@ -50,7 +50,7 @@ This library is published under the MIT License.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def flatten(input_list: list) -> list:
