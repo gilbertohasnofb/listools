@@ -36,7 +36,7 @@ listools_classifiers = [
     "Topic :: Utilities",
 ]
 
-with open("README.md", "r") as fp:
+with open("README.rst", "r") as fp:
     listools_long_description = fp.read()
 
 setup(
