@@ -11,4 +11,4 @@ cache: pip
 install:
   - pip install listools
 script:
-  - py.test -v
+  - python -m pytest -v

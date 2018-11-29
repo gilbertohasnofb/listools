@@ -30,14 +30,16 @@ Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library contains the following functions:
 
-* `listools.flatten(input_list)`
-* `listools.partial_flatten(input_list[, depth])`
 * `listools.concat_flatten(*input_lists)`
-* `listools.sum_flatten(input_list)`
-* `listools.len_flatten(input_list)`
+* `listools.flatten(input_list)`
 * `listools.index_flatten(element, input_list)`
-* `listools.zip_cycle(*input_iters)`
+* `listools.len_flatten(input_list)`
+* `listools.partial_flatten(input_list[, depth])`
+* `listools.reverse_sorted_flatten(input_list)`
+* `listools.sorted_flatten(input_list)`
+* `listools.sum_flatten(input_list)`
 * `listools.zip_cycle_flatten(*input_lists)`
+* `listools.zip_cycle(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
@@ -45,7 +47,7 @@ This library is published under the MIT License.
 """
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "1.0.4"
+__version__ = "1.0.5"
 
 
 def flatten(input_list: list) -> list:
@@ -366,3 +368,65 @@ def zip_cycle_flatten(*input_lists) -> tuple:
         for flatten_list in flatten_lists:
             output_list.append(flatten_list[i % len(flatten_list)])
         yield tuple(output_list)
+
+
+def sorted_flatten(input_list: list) -> list:
+    r"""listools.sorted_flatten(input_list)
+
+    Completely flattens a list containing any number of nested subslists into a
+    sorted one dimensional list. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> listools.sorted_flatten(alist)
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    >>> alist = [1, 5, [3, [2, 4]]]
+    >>> listools.sorted_flatten(alist)
+    [1, 2, 3, 4, 5]
+
+    The list can also be made out of floats:
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> listools.sorted_flatten(alist)
+    [-3.14, -1.03, 1.73, 5.56, 9.41]
+
+    Or it can be made out of a mixture of integers and floats:
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> listools.sorted_flatten(alist)
+    [-3.1, 1.4, 3, 5, 6.6, 7.8]
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return sorted(flatten(input_list))
+
+
+def reverse_sorted_flatten(input_list: list) -> list:
+    r"""listools.reverse_sorted_flatten(input_list)
+
+    Completely flattens a list containing any number of nested subslists into a
+    reversely sorted one dimensional list. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> listools.reverse_sorted_flatten(alist)
+    [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+    >>> alist = [1, 5, [3, [2, 4]]]
+    >>> listools.reverse_sorted_flatten(alist)
+    [5, 4, 3, 2, 1]
+
+    The list can also be made out of floats:
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> listools.reverse_sorted_flatten(alist)
+    [9.41, 5.56, 1.73, -1.03, -3.14]
+
+    Or it can be made out of a mixture of integers and floats:
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> listools.reverse_sorted_flatten(alist)
+    [7.8, 6.6, 5, 3, 1.4, -3.1]
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return sorted(flatten(input_list), reverse=True)

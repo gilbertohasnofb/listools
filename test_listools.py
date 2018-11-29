@@ -171,3 +171,39 @@ def test_zip_cycle_flatten():
     assert zip_cycle_flatten_iter.__next__() == (1,)
     assert zip_cycle_flatten_iter.__next__() == (2,)
     assert zip_cycle_flatten_iter.__next__() == (3,)
+
+
+def test_sorted_flatten():
+    alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    expected_result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    assert listools.sorted_flatten(alist) == expected_result
+
+    alist = [1, 5, [3, [2, 4]]]
+    assert listools.sorted_flatten(alist) == [1, 2, 3, 4, 5]
+
+    alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    assert listools.sorted_flatten(alist) == [-3.14, -1.03, 1.73, 5.56, 9.41]
+
+    alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    assert listools.sorted_flatten(alist) == [-3.1, 1.4, 3, 5, 6.6, 7.8]
+
+    assert listools.sorted_flatten([]) == []
+
+
+def test_reverse_sorted_flatten():
+    alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    expected_result = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    assert listools.reverse_sorted_flatten(alist) == expected_result
+
+    alist = [1, 5, [3, [2, 4]]]
+    assert listools.reverse_sorted_flatten(alist) == [5, 4, 3, 2, 1]
+
+    alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    expected_result = [9.41, 5.56, 1.73, -1.03, -3.14]
+    assert listools.reverse_sorted_flatten(alist) == expected_result
+
+    alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    expected_result = [7.8, 6.6, 5, 3, 1.4, -3.1]
+    assert listools.reverse_sorted_flatten(alist) == expected_result
+
+    assert listools.reverse_sorted_flatten([]) == []

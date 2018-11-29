@@ -9,14 +9,16 @@ Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library contains the following functions:
 
-* `listools.flatten(input_list)`
-* `listools.partial_flatten(input_list[, depth])`
 * `listools.concat_flatten(*input_lists)`
-* `listools.sum_flatten(input_list)`
-* `listools.len_flatten(input_list)`
+* `listools.flatten(input_list)`
 * `listools.index_flatten(element, input_list)`
-* `listools.zip_cycle(*input_iters)`
+* `listools.len_flatten(input_list)`
+* `listools.partial_flatten(input_list[, depth])`
+* `listools.reverse_sorted_flatten(input_list)`
+* `listools.sorted_flatten(input_list)`
+* `listools.sum_flatten(input_list)`
 * `listools.zip_cycle_flatten(*input_lists)`
+* `listools.zip_cycle(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
