@@ -1,7 +1,7 @@
 listools
 ========
 
-|PyPI| |Python versions| |License|  |Bug report|
+|PyPI| |Build| |Python versions| |License|  |Bug report|
 
 This library provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. It is contained in a single Python file, so it can be easily copied into your project (the copyright and license notice must be retained). Alternatively, you can install it using `pip install listools`.
 
@@ -26,6 +26,8 @@ This library is published under the MIT License.
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/listools.svg
    :target: https://pypi.python.org/pypi/listools
+.. |Build| image:: https://travis-ci.org/gilbertohasnofb/listools.svg?branch=master
+   :target: https://travis-ci.org/gilbertohasnofb/listools
 .. |Python versions| image:: https://img.shields.io/pypi/pyversions/listools.svg
 .. |License| image:: https://img.shields.io/github/license/gilbertohasnofb/listools.svg
    :target: https://github.com/gilbertohasnofb/listools/blob/master/LICENSE
