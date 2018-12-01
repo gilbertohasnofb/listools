@@ -23,15 +23,15 @@
 """The module `flatools` contains functions that deal with flatten lists. The
 full list of available functions is:
 
-* `listools.flatools.flatten_index(element, input_list)`
-* `listools.flatools.flatten_join(*input_lists)`
-* `listools.flatools.flatten_len(input_list)`
-* `listools.flatools.flatten_reverse(input_list)`
-* `listools.flatools.flatten_sorted(input_list)`
-* `listools.flatools.flatten_sum(input_list)`
-* `listools.flatools.flatten_zip_cycle(*input_lists)`
-* `listools.flatools.flatten(input_list)`
-* `listools.flatools.pflatten(input_list[, depth])`
+* `flatools.flatten_index(element, input_list)`
+* `flatools.flatten_join(*input_lists)`
+* `flatools.flatten_len(input_list)`
+* `flatools.flatten_reverse(input_list)`
+* `flatools.flatten_sorted(input_list, *[, key][, reverse])`
+* `flatools.flatten_sum(input_list)`
+* `flatools.flatten_zip_cycle(*input_lists)`
+* `flatools.flatten(input_list)`
+* `flatools.pflatten(input_list[, depth])`
 
 All functions have a `__doc__` attribute with usage instructions.
 
@@ -301,8 +301,12 @@ def flatten_zip_cycle(*input_lists) -> tuple:
         yield tuple(output_list)
 
 
-def flatten_sorted(input_list: list) -> list:
-    r"""listools.flatools.flatten_sorted(input_list)
+def flatten_sorted(input_list: list,
+                   *,
+                   key: 'function' = None,
+                   reverse: bool = False,
+                   ) -> list:
+    r"""listools.flatools.flatten_sorted(input_list[, key][, reverse])
 
     Completely flattens a list containing any number of nested subslists into a
     flatten_sorted one dimensional list. Usage:
@@ -326,10 +330,25 @@ def flatten_sorted(input_list: list) -> list:
     >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
     >>> flatools.flatten_sorted(alist)
     [-3.1, 1.4, 3, 5, 6.6, 7.8]
+
+    There are two optional arguments that can be used. The first is a called
+    'key' and takes a function that serves as a key for the sort comparison.
+
+    >>> alist = [-1, -5, [3, [-2, 4]]]
+    >>> print(flatten_sorted(alist))
+    [-5, -2, -1, 3, 4]
+    >>> print(flatten_sorted(alist, key=abs))
+    [-1, -2, 3, 4, -5]
+
+    The second is 'reverse', which reverses the order of the output list:
+
+    >>> alist = [1, 5, [3, [2, 4]]]
+    >>> print(flatten_sorted(alist, reverse=True))
+    [5, 4, 3, 2, 1]
     """
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
-    return sorted(flatten(input_list))
+    return sorted(flatten(input_list), key=key, reverse=reverse)
 
 
 def flatten_reverse(input_list: list) -> list:

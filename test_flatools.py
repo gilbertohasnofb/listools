@@ -152,6 +152,12 @@ def test_flatten_sorted():
     alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
     assert flatools.flatten_sorted(alist) == [-3.1, 1.4, 3, 5, 6.6, 7.8]
 
+    alist = [-1, -5, [3, [-2, 4]]]
+    assert flatools.flatten_sorted(alist, key=abs) == [-1, -2, 3, 4, -5]
+
+    alist = [1, 5, [3, [2, 4]]]
+    assert flatools.flatten_sorted(alist, reverse=True) == [5, 4, 3, 2, 1]
+
     assert flatools.flatten_sorted([]) == []
 
 

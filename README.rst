@@ -9,15 +9,15 @@ Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This package contains three modules: `flatools`, `iterz` and `llogic`. The complete list of functions available is:
 
-* `flattools.flatten_index(element, input_list)`
-* `flattools.flatten_join(*input_lists)`
-* `flattools.flatten_len(input_list)`
-* `flattools.flatten_reverse(input_list)`
-* `flattools.flatten_sorted(input_list)`
-* `flattools.flatten_sum(input_list)`
-* `flattools.flatten_zip_cycle(*input_lists)`
-* `flattools.flatten(input_list)`
-* `flattools.pflatten(input_list[, depth])`
+* `flatools.flatten_index(element, input_list)`
+* `flatools.flatten_join(*input_lists)`
+* `flatools.flatten_len(input_list)`
+* `flatools.flatten_reverse(input_list)`
+* `flatools.flatten_sorted(input_list, *[, key][, reverse])`
+* `flatools.flatten_sum(input_list)`
+* `flatools.flatten_zip_cycle(*input_lists)`
+* `flatools.flatten(input_list)`
+* `flatools.pflatten(input_list[, depth])`
 * `iterz.zip_cycle(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.

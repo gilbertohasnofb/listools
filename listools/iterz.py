@@ -23,7 +23,7 @@
 """The module `iterz` contains functions that manipualte lists as iterators.
 The full list of available functions is:
 
-* `listools.iterz.zip_cycle(*input_lists)`
+* `iterz.zip_cycle(*input_lists)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
