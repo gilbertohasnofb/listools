@@ -74,6 +74,9 @@ def test_flatten_sum():
     alist = [1, [2.1, [3, [4.1]]]]
     assert flatools.flatten_sum(alist) == 10.2
 
+    alist = [1, [2, [3]]]
+    assert flatools.flatten_sum(alist, start=4) == 10
+
     alist = []
     assert flatools.flatten_sum(alist) == 0
 

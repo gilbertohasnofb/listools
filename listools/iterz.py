@@ -32,7 +32,7 @@ This library is published under the MIT License.
 
 
 def zip_cycle(*input_iters) -> tuple:
-    r"""listools.iterz.zip_cycle(*input_iters)
+    r"""iterz.zip_cycle(*input_iters)
 
     Similar to zip but cycles smaller lists or iterables until the largerst one
     is output. Usage:

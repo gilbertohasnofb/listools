@@ -28,7 +28,7 @@ full list of available functions is:
 * `flatools.flatten_len(input_list)`
 * `flatools.flatten_reverse(input_list)`
 * `flatools.flatten_sorted(input_list, *[, key][, reverse])`
-* `flatools.flatten_sum(input_list)`
+* `flatools.flatten_sum(input_list[, start])`
 * `flatools.flatten_zip_cycle(*input_lists)`
 * `flatools.flatten(input_list)`
 * `flatools.pflatten(input_list[, depth])`
@@ -40,7 +40,7 @@ This library is published under the MIT License.
 
 
 def flatten(input_list: list) -> list:
-    r"""listools.flatools.flatten(input_list)
+    r"""flatools.flatten(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
     one dimensional list. It is equivalent to flatools.pflatten() with
@@ -75,7 +75,7 @@ def flatten(input_list: list) -> list:
 
 
 def pflatten(input_list: list, depth: int = 1) -> list:
-    r"""listools.flatools.pflatten(input_list[, depth])
+    r"""flatools.pflatten(input_list[, depth])
 
     Partially flattens a list containing subslists as elements. Usage:
 
@@ -125,7 +125,7 @@ def pflatten(input_list: list, depth: int = 1) -> list:
 
 
 def flatten_join(*input_lists: list) -> list:
-    r"""listools.flatools.flatten_join(*input_lists)
+    r"""flatools.flatten_join(*input_lists)
 
     Completely flattens and concatenates an arbitrary number of input lists
     containing any number of nested subslists. Usage:
@@ -162,8 +162,8 @@ def flatten_join(*input_lists: list) -> list:
     return output_list
 
 
-def flatten_sum(input_list: list):
-    r"""listools.flatools.flatten_sum(input_list)
+def flatten_sum(input_list: list, start=0):
+    r"""flatools.flatten_sum(input_list[, start])
 
     Sums all values of the list, including any nested subslists. Usage:
 
@@ -186,14 +186,21 @@ def flatten_sum(input_list: list):
     >>> alist = [1, [2.1, [3, [4.1]]]]
     >>> flatools.flatten_sum(alist)
     10.2
+
+    It can also take an optional argument named 'start' which defines the
+    starting value of the sum.
+
+    >>> alist = [1, [2, [3]]]
+    >>> flatools.flatten_sum(alist, start=4)
+    10
     """
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
-    return sum(flatten(input_list))
+    return sum(flatten(input_list), start)
 
 
 def flatten_len(input_list: list) -> int:
-    r"""listools.flatools.flatten_len(input_list)
+    r"""flatools.flatten_len(input_list)
 
     Returns the flatten_length of a flatten list (that is, it counts all
     elements in all of its subslists). Usage:
@@ -214,7 +221,7 @@ def flatten_len(input_list: list) -> int:
 
 
 def flatten_index(element, input_list: list) -> int:
-    r"""listools.flatools.flatten_index(input_list)
+    r"""flatools.flatten_index(input_list)
 
     Returns the length of a flatten list (that is, it counts all elements in
     all of its subslists). Usage:
@@ -244,7 +251,7 @@ def flatten_index(element, input_list: list) -> int:
 
 
 def flatten_zip_cycle(*input_lists) -> tuple:
-    r"""listools.flatools.flatten_zip_cycle(*input_lists)
+    r"""flatools.flatten_zip_cycle(*input_lists)
 
     This function is very nearly identical to flatools.flatten_zip_cycle except
     that it also flattens all lists before zipping and cycling them. Usage:
@@ -306,7 +313,7 @@ def flatten_sorted(input_list: list,
                    key: 'function' = None,
                    reverse: bool = False,
                    ) -> list:
-    r"""listools.flatools.flatten_sorted(input_list[, key][, reverse])
+    r"""flatools.flatten_sorted(input_list, *[, key][, reverse])
 
     Completely flattens a list containing any number of nested subslists into a
     flatten_sorted one dimensional list. Usage:
@@ -352,7 +359,7 @@ def flatten_sorted(input_list: list,
 
 
 def flatten_reverse(input_list: list) -> list:
-    r"""listools.flatools.flatten_reverse(input_list)
+    r"""flatools.flatten_reverse(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
     flatten_reversely sorted one dimensional list. Usage:
