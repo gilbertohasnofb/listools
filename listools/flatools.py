@@ -20,55 +20,44 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""The `listools` library provides utility functions for dealing with lists in
-Python 3. `listools` supports Python version 3.0 and newer. It is contained in
-a single Python file, so it can be easily copied into your project (the
-copyright and license notice must be retained). Alternatively, you can install
-it using `pip install listools`.
+"""The module `flatools` contains functions that deal with flatten lists. The
+full list of available functions is:
 
-Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
-
-This library contains the following functions:
-
-* `listools.concat_flatten(*input_lists)`
-* `listools.flatten(input_list)`
-* `listools.index_flatten(element, input_list)`
-* `listools.len_flatten(input_list)`
-* `listools.partial_flatten(input_list[, depth])`
-* `listools.reverse_sorted_flatten(input_list)`
-* `listools.sorted_flatten(input_list)`
-* `listools.sum_flatten(input_list)`
-* `listools.zip_cycle_flatten(*input_lists)`
-* `listools.zip_cycle(*input_iters)`
+* `listools.flatools.flatten_index(element, input_list)`
+* `listools.flatools.flatten_join(*input_lists)`
+* `listools.flatools.flatten_len(input_list)`
+* `listools.flatools.flatten_reverse(input_list)`
+* `listools.flatools.flatten_sorted(input_list)`
+* `listools.flatools.flatten_sum(input_list)`
+* `listools.flatools.flatten_zip_cycle(*input_lists)`
+* `listools.flatools.flatten(input_list)`
+* `listools.flatools.pflatten(input_list[, depth])`
 
 All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.
 """
 
-__author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "1.0.5"
-
 
 def flatten(input_list: list) -> list:
-    r"""listools.flatten(input_list)
+    r"""listools.flatools.flatten(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
-    one dimensional list. It is equivalent to listools.partial_flatten() with
+    one dimensional list. It is equivalent to flatools.pflatten() with
     an infinitely large depth. Usage:
 
     >>> alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
-    >>> listools.flatten(alist)
+    >>> flatools.flatten(alist)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.flatten(alist)
+    >>> flatools.flatten(alist)
     [1, 2, 3, 4, 5]
 
     Notice that the list themselves can be made out of any datatypes:
 
     >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    >>> listools.flatten(alist)
+    >>> flatools.flatten(alist)
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not (isinstance(input_list, list)):
@@ -85,38 +74,38 @@ def flatten(input_list: list) -> list:
     return _flatten_aux(input_list, aux_list=None)
 
 
-def partial_flatten(input_list: list, depth: int = 1) -> list:
-    r"""listools.partial_flatten(input_list[, depth])
+def pflatten(input_list: list, depth: int = 1) -> list:
+    r"""listools.flatools.pflatten(input_list[, depth])
 
     Partially flattens a list containing subslists as elements. Usage:
 
     >>> alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
-    >>> listools.partial_flatten(alist)
+    >>> flatools.pflatten(alist)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     >>> alist = [1, 2, [3, [[4], 5]]]
-    >>> listools.partial_flatten(alist)
+    >>> flatools.pflatten(alist)
     [1, 2, 3, [[4], 5]]
 
     Use the depth argument (which should always be an integer) when wanting to
     flatten nested sublists:
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.partial_flatten(alist, depth=2)
+    >>> flatools.pflatten(alist, depth=2)
     [1, 2, 3, [4], 5]
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.partial_flatten(alist, depth=3)
+    >>> flatools.pflatten(alist, depth=3)
     [1, 2, 3, 4, 5]
 
     >>> alist = [1, 2, [3, [4, 5]]]
-    >>> listools.partial_flatten(alist, depth=4)
+    >>> flatools.pflatten(alist, depth=4)
     [1, 2, 3, 4, 5]
 
     Notice that the list themselves can be made out of any datatypes:
 
     >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    >>> listools.flatten(alist, depth=3)
+    >>> flatools.flatten(alist, depth=3)
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not isinstance(input_list, list):
@@ -135,26 +124,26 @@ def partial_flatten(input_list: list, depth: int = 1) -> list:
     return output_list
 
 
-def concat_flatten(*input_lists: list) -> list:
-    r"""listools.concat_flatten(*input_lists)
+def flatten_join(*input_lists: list) -> list:
+    r"""listools.flatools.flatten_join(*input_lists)
 
     Completely flattens and concatenates an arbitrary number of input lists
     containing any number of nested subslists. Usage:
 
     >>> alist = [[1, 2], [3, 4]]
     >>> blist = [[5, 6], [7, 8]]
-    >>> listools.concat_flatten(alist, blist)
+    >>> flatools.flatten_join(alist, blist)
     [1, 2, 3, 4, 5, 6, 7, 8]
 
     >>> alist = [1, [2, [3]]]
     >>> blist = [[[4], 5], 6]
-    >>> listools.concat_flatten(alist, blist)
+    >>> flatools.flatten_join(alist, blist)
     [1, 2, 3, 4, 5, 6]
 
     >>> alist = [[1, 2], [3, 4]]
     >>> blist = [[5, 6], [7, 8]]
     >>> clist = [[[9], 10], 11]
-    >>> listools.concat_flatten(alist, blist, clist)
+    >>> flatools.flatten_join(alist, blist, clist)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
     Notice that the list themselves can be made out of any datatypes:
@@ -162,7 +151,7 @@ def concat_flatten(*input_lists: list) -> list:
     >>> alist = [1, [2.2, True]]
     >>> blist = ['foo', [(1, 4), None]]
     >>> clist = [(3+2j), {'a': 1}]
-    >>> listools.concat_flatten(alist, blist, clist)
+    >>> flatools.flatten_join(alist, blist, clist)
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
@@ -173,29 +162,29 @@ def concat_flatten(*input_lists: list) -> list:
     return output_list
 
 
-def sum_flatten(input_list: list):
-    r"""listools.sum_flatten(input_list)
+def flatten_sum(input_list: list):
+    r"""listools.flatools.flatten_sum(input_list)
 
     Sums all values of the list, including any nested subslists. Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
-    >>> listools.sum_flatten(alist)
+    >>> flatools.flatten_sum(alist)
     21
 
     >>> alist = [1, [2, [3]]]
-    >>> listools.sum_flatten(alist)
+    >>> flatools.flatten_sum(alist)
     6
 
     The list can also be made out of floats:
 
     >>> alist = [1.1, [2.2, [3.3]]]
-    >>> listools.sum_flatten(alist)
+    >>> flatools.flatten_sum(alist)
     6.6
 
     Or it can contain a mix of integers and floats:
 
     >>> alist = [1, [2.1, [3, [4.1]]]]
-    >>> listools.sum_flatten(alist)
+    >>> flatools.flatten_sum(alist)
     10.2
     """
     if not (isinstance(input_list, list)):
@@ -203,20 +192,20 @@ def sum_flatten(input_list: list):
     return sum(flatten(input_list))
 
 
-def len_flatten(input_list: list) -> int:
-    r"""listools.len_flatten(input_list)
+def flatten_len(input_list: list) -> int:
+    r"""listools.flatools.flatten_len(input_list)
 
-    Returns the length of a flatten list (that is, it counts all elements in
-    all of its subslists). Usage:
+    Returns the flatten_length of a flatten list (that is, it counts all
+    elements in all of its subslists). Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
-    >>> listools.len_flatten(alist)
+    >>> flatools.flatten_len(alist)
     6
 
     The datatypes of the elements of the list do not matter:
 
     >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    >>> listools.len_flatten(alist)
+    >>> flatools.flatten_len(alist)
     8
     """
     if not (isinstance(input_list, list)):
@@ -224,27 +213,27 @@ def len_flatten(input_list: list) -> int:
     return len(flatten(input_list))
 
 
-def index_flatten(element, input_list: list) -> int:
-    r"""listools.index_flatten(input_list)
+def flatten_index(element, input_list: list) -> int:
+    r"""listools.flatools.flatten_index(input_list)
 
     Returns the length of a flatten list (that is, it counts all elements in
     all of its subslists). Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
-    >>> listools.index_flatten(3, alist)
+    >>> flatools.flatten_index(3, alist)
     2
 
     The datatypes of the elements of the list do not matter:
 
     >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    >>> listools.index_flatten(None, alist)
+    >>> flatools.flatten_index(None, alist)
     5
 
-    Just like the default behaviour of the index() method of a list,
-    index_flatten raises a ValueError if an element is not found in a list:
+    Just like the default behaviour of the flatten_index() method of a list,
+    flatten_index raises a ValueError if an element is not found in a list:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
-    >>> listools.index_flatten(7, alist)
+    >>> flatools.flatten_index(7, alist)
     ValueError: 7 is not in list
     """
     if isinstance(element, list):
@@ -254,73 +243,15 @@ def index_flatten(element, input_list: list) -> int:
     return flatten(input_list).index(element)
 
 
-def zip_cycle(*input_iters) -> tuple:
-    r"""listools.zip_cycle(*input_iters)
+def flatten_zip_cycle(*input_lists) -> tuple:
+    r"""listools.flatools.flatten_zip_cycle(*input_lists)
 
-    Similar to zip but cycles smaller lists or iterables until the largerst one
-    is output. Usage:
-
-    >>> alist = [1, 2]
-    >>> blist = [4, 5, 6, 7, 8]
-    >>> for i, j in listools.zip_cycle(alist, blist):
-    ...     print(i, j)
-    1 4
-    2 5
-    1 6
-    2 7
-    1 8
-
-    It also works with multiple lists:
-
-    >>> alist = [1, 2]
-    >>> blist = [1, 2, 3]
-    >>> clist = [1, 2, 3, 4]
-    >>> dlist = [1, 2, 3, 4, 5]
-    >>> for i, j, k, l in listools.zip_cycle(alist, blist, clist, dlist):
-    ...     print(i, j, k, l)
-    1 1 1 1
-    2 2 2 2
-    1 3 3 3
-    2 1 4 4
-    1 2 1 5
-
-    In fact, it works with any iterable containing any datatypes:
-
-    >>> a = (1, 2, 3)
-    >>> b = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
-    >>> c = 'abcde'
-    >>> for i, j, k in listools.zip_cycle(a, b, c):
-    ...     print(i, j, k)
-    1 1.0 a
-    2 2.0 b
-    3 3.0 c
-    1 4.0 d
-    2 5.0 e
-    3 6.0 a
-    1 7.0 b
-    """
-    for input_iter in input_iters:
-        try:
-            iterator = iter(input_iter)
-        except:
-            raise TypeError('*input_iters should a list of \'iter\' objects')
-    aux = max([len(input_iter) for input_iter in input_iters])
-    for i in range(aux):
-        output_list = []
-        for input_iter in input_iters:
-            output_list.append(input_iter[i % len(input_iter)])
-        yield tuple(output_list)
-
-
-def zip_cycle_flatten(*input_lists) -> tuple:
-    r"""listools.zip_cycle_flatten(*input_lists)
-
-    This function is very nearly identical to listools.zip_cycle except that it
-    also flattens all lists before zipping and cycling them. Usage:
+    This function is very nearly identical to flatools.flatten_zip_cycle except
+    that it also flattens all lists before zipping and cycling them. Usage:
 
     >>> alist = [1, 2]
     >>> blist = [4, [5, 6, 7], 8]
-    >>> for i, j in listools.zip_cycle_flatten(alist, blist):
+    >>> for i, j in flatools.flatten_zip_cycle(alist, blist):
     ...     print(i, j)
     1 4
     2 5
@@ -334,7 +265,7 @@ def zip_cycle_flatten(*input_lists) -> tuple:
     >>> b = [1, [2, 3]]
     >>> c = [[[1], 2, 3], 4]
     >>> d = [1, [2, [3, 4]], 5]
-    >>> for i, j, k, l in listools.zip_cycle_flatten(a, b, c, d):
+    >>> for i, j, k, l in flatools.flatten_zip_cycle(a, b, c, d):
     ...     print(i, j, k, l)
     1 1 1 1
     2 2 2 2
@@ -346,7 +277,7 @@ def zip_cycle_flatten(*input_lists) -> tuple:
 
     >>> alist = [1, 2.0, 'foo', True, None]
     >>> blist = [False, 'bar', (1, 4)]
-    >>> for i, j in listools.zip_cycle_flatten(alist, blist):
+    >>> for i, j in flatools.flatten_zip_cycle(alist, blist):
     ...     print(i, j)
     1 False
     2.0 bar
@@ -354,8 +285,8 @@ def zip_cycle_flatten(*input_lists) -> tuple:
     True False
     None bar
 
-    Note that unlike listools.zip_cycle(), this function accepts only lists as
-    input due to its flatenning function.
+    Note that unlike flatools.flatten_zip_cycle(), this function accepts only
+    lists as input due to its flatenning function.
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
         raise TypeError('*input_lists should be one or more \'list\' objects')
@@ -370,30 +301,30 @@ def zip_cycle_flatten(*input_lists) -> tuple:
         yield tuple(output_list)
 
 
-def sorted_flatten(input_list: list) -> list:
-    r"""listools.sorted_flatten(input_list)
+def flatten_sorted(input_list: list) -> list:
+    r"""listools.flatools.flatten_sorted(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
-    sorted one dimensional list. Usage:
+    flatten_sorted one dimensional list. Usage:
 
     >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
-    >>> listools.sorted_flatten(alist)
+    >>> flatools.flatten_sorted(alist)
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     >>> alist = [1, 5, [3, [2, 4]]]
-    >>> listools.sorted_flatten(alist)
+    >>> flatools.flatten_sorted(alist)
     [1, 2, 3, 4, 5]
 
     The list can also be made out of floats:
 
     >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
-    >>> listools.sorted_flatten(alist)
+    >>> flatools.flatten_sorted(alist)
     [-3.14, -1.03, 1.73, 5.56, 9.41]
 
     Or it can be made out of a mixture of integers and floats:
 
     >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
-    >>> listools.sorted_flatten(alist)
+    >>> flatools.flatten_sorted(alist)
     [-3.1, 1.4, 3, 5, 6.6, 7.8]
     """
     if not (isinstance(input_list, list)):
@@ -401,30 +332,30 @@ def sorted_flatten(input_list: list) -> list:
     return sorted(flatten(input_list))
 
 
-def reverse_sorted_flatten(input_list: list) -> list:
-    r"""listools.reverse_sorted_flatten(input_list)
+def flatten_reverse(input_list: list) -> list:
+    r"""listools.flatools.flatten_reverse(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
-    reversely sorted one dimensional list. Usage:
+    flatten_reversely sorted one dimensional list. Usage:
 
     >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
-    >>> listools.reverse_sorted_flatten(alist)
+    >>> flatools.flatten_reverse(alist)
     [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
     >>> alist = [1, 5, [3, [2, 4]]]
-    >>> listools.reverse_sorted_flatten(alist)
+    >>> flatools.flatten_reverse(alist)
     [5, 4, 3, 2, 1]
 
     The list can also be made out of floats:
 
     >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
-    >>> listools.reverse_sorted_flatten(alist)
+    >>> flatools.flatten_reverse(alist)
     [9.41, 5.56, 1.73, -1.03, -3.14]
 
     Or it can be made out of a mixture of integers and floats:
 
     >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
-    >>> listools.reverse_sorted_flatten(alist)
+    >>> flatools.flatten_reverse(alist)
     [7.8, 6.6, 5, 3, 1.4, -3.1]
     """
     if not (isinstance(input_list, list)):

@@ -41,7 +41,7 @@ with open("README.rst", "r") as fp:
 
 setup(
     name='listools',
-    description='listools: a Python 3 library of list functions',
+    description='listools: a Python 3 package of list utilities',
     author='Gilberto Agostinho',
     author_email='gilbertohasnofb@gmail.com',
     version=listools.__version__,
