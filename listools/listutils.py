@@ -20,11 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""The module `lmaths` contains functions that apply simple mathematical
+"""The module `listutils` contains functions that apply simple mathematical
 operations to lists. The full list of available functions is:
 
-* `lmaths.list_lcm(input_list)`
-* `lmaths.list_gcd(input_list)`
+* `listutils.list_lcm(input_list)`
+* `listutils.list_gcd(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
@@ -44,17 +44,17 @@ def _lcm(a, b):
 
 
 def list_lcm(input_list: list) -> int:
-    r"""lmaths.list_lcm(input_list)
+    r"""listutils.list_lcm(input_list)
 
     This function returns the least common multiple of a list of integers.
     Usage:
 
     >>> alist = [1, 2, 3]
-    >>> lmaths.list_lcm(alist)
+    >>> listutils.list_lcm(alist)
     6
 
     >>> alist = [7, 8, 4, 3]
-    >>> lmaths.list_lcm(alist)
+    >>> listutils.list_lcm(alist)
     168
     """
     if not isinstance(input_list, list):
@@ -63,17 +63,17 @@ def list_lcm(input_list: list) -> int:
 
 
 def list_gcd(input_list: list) -> int:
-    r"""lmaths.list_gcd(input_list)
+    r"""listutils.list_gcd(input_list)
 
     This function returns the greatest common divisor of a list of integers.
     Usage:
 
     >>> alist = [8, 12]
-    >>> lmaths.list_gcd(alist)
+    >>> listutils.list_gcd(alist)
     4
 
     >>> alist = [74, 259, 185, 333]
-    >>> lmaths.list_gcd(alist)
+    >>> listutils.list_gcd(alist)
     37
     """
     if not isinstance(input_list, list):

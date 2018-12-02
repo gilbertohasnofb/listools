@@ -37,7 +37,7 @@ This library is published under the MIT License.
 """
 
 from itertools import count
-from .lmaths import list_lcm
+from .listutils import list_lcm
 
 
 def zip_cycle(*input_iters) -> tuple:

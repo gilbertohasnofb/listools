@@ -7,7 +7,7 @@ listools
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
-This package contains four modules: `flatools`, `iterz`, `llogic` and `lmaths`. The complete list of functions available is:
+This package contains four modules: `flatools`, `iterz`, `llogic` and `listutils`. The complete list of functions available is:
 
 * `flatools.flatten_index(element, input_list)`
 * `flatools.flatten_join(*input_lists)`
@@ -39,8 +39,8 @@ This package contains four modules: `flatools`, `iterz`, `llogic` and `lmaths`. 
 * `llogic.symmetric_difference(list_1, list_2)`
 * `llogic.union(list_1, list_2)`
 
-* `lmaths.list_lcm(input_list)`
-* `lmaths.list_gcd(input_list)`
+* `listutils.list_lcm(input_list)`
+* `listutils.list_gcd(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
