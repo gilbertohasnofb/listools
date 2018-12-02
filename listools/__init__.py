@@ -1,5 +1,5 @@
 """`listools` is a Python 3 package of which provides utility functions for
-dealing with lists in Python 3. `listools` supports Python version 3.0 and
+dealing with lists in Python 3. `listools` supports Python version 3.5 and
 newer. You can install it using `pip install listools`.
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
@@ -53,5 +53,5 @@ from listools.llogic import *
 from listools.listutils import *
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 __all__ = ['flatools', 'iterz', 'llogic']

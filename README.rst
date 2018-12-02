@@ -3,7 +3,7 @@ listools
 
 |PyPI| |Build| |Python versions| |License|  |Bug report|
 
-`listools` is a Python 3 package of which provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.0 and newer. You can install it using `pip install listools`.
+`listools` is a Python 3 package of which provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.5 and newer. You can install it using `pip install listools`.
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
