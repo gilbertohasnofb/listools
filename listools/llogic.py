@@ -68,7 +68,7 @@ def single_type(input_list: list) -> bool:
     False
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return len(set(map(type, input_list))) == 1
 
 
@@ -104,7 +104,7 @@ def mixed_type(input_list: list) -> bool:
     False
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return len(set(map(type, input_list))) > 1
 
 
@@ -148,9 +148,9 @@ def intersection(list_1: list, list_2: list) -> list:
     []
     """
     if not isinstance(list_1, list):
-        raise TypeError('list_1 should be a \'list\'')
+        raise TypeError('\'list_1\' must be \'list\'')
     if not isinstance(list_2, list):
-        raise TypeError('list_2 should be a \'list\'')
+        raise TypeError('\'list_2\' must be \'list\'')
     output_list = []
     for item in list_1:
         if item in list_2 and item not in output_list:
@@ -191,9 +191,9 @@ def union(list_1: list, list_2: list) -> list:
     [1, 2.3, 'foo', (3, 7), 7+3j]
     """
     if not isinstance(list_1, list):
-        raise TypeError('list_1 should be a \'list\'')
+        raise TypeError('\'list_1\' must be \'list\'')
     if not isinstance(list_2, list):
-        raise TypeError('list_2 should be a \'list\'')
+        raise TypeError('\'list_2\' must be \'list\'')
     output_list = []
     for item in list_1 + list_2:
         if item not in output_list:
@@ -240,9 +240,9 @@ def difference(list_1: list, list_2: list) -> list:
     [1, 2.3]
     """
     if not isinstance(list_1, list):
-        raise TypeError('list_1 should be a \'list\'')
+        raise TypeError('\'list_1\' must be \'list\'')
     if not isinstance(list_2, list):
-        raise TypeError('list_2 should be a \'list\'')
+        raise TypeError('\'list_2\' must be \'list\'')
     output_list = []
     for item in list_1:
         if item not in list_2 and item not in output_list:
@@ -289,9 +289,9 @@ def symmetric_difference(list_1: list, list_2: list) -> list:
     [1, 2.3, 7+3j]
     """
     if not isinstance(list_1, list):
-        raise TypeError('list_1 should be a \'list\'')
+        raise TypeError('\'list_1\' must be \'list\'')
     if not isinstance(list_2, list):
-        raise TypeError('list_2 should be a \'list\'')
+        raise TypeError('\'list_2\' must be \'list\'')
     output_list = []
     for item in list_1 + list_2:
         if item not in list_1 or item not in list_2:
@@ -333,9 +333,9 @@ def is_contained(list_1: list, list_2: list) -> list:
     True
     """
     if not isinstance(list_1, list):
-        raise TypeError('list_1 should be a \'list\'')
+        raise TypeError('\'list_1\' must be \'list\'')
     if not isinstance(list_2, list):
-        raise TypeError('list_2 should be a \'list\'')
+        raise TypeError('\'list_2\' must be \'list\'')
     for item in list_1:
         if item not in list_2:
             return False

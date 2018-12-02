@@ -113,6 +113,8 @@ def test_flatten_zip_cycle():
     assert flatten_zip_cycle_iter.__next__() == (1, 6)
     assert flatten_zip_cycle_iter.__next__() == (2, 7)
     assert flatten_zip_cycle_iter.__next__() == (1, 8)
+    with pytest.raises(StopIteration):
+        flatten_zip_cycle_iter.__next__()
 
     a = [1, 2]
     b = [1, [2, 3]]
@@ -124,6 +126,8 @@ def test_flatten_zip_cycle():
     assert flatten_zip_cycle_iter.__next__() == (1, 3, 3, 3)
     assert flatten_zip_cycle_iter.__next__() == (2, 1, 4, 4)
     assert flatten_zip_cycle_iter.__next__() == (1, 2, 1, 5)
+    with pytest.raises(StopIteration):
+        flatten_zip_cycle_iter.__next__()
 
     alist = [1, 2.0, 'foo', True, None]
     blist = [False, 'bar', (1, 4)]
@@ -133,12 +137,16 @@ def test_flatten_zip_cycle():
     assert flatten_zip_cycle_iter.__next__() == ('foo', (1, 4))
     assert flatten_zip_cycle_iter.__next__() == (True, False)
     assert flatten_zip_cycle_iter.__next__() == (None, 'bar')
+    with pytest.raises(StopIteration):
+        flatten_zip_cycle_iter.__next__()
 
     alist = [1, [2, [3]]]
     flatten_zip_cycle_iter = flatools.flatten_zip_cycle(alist)
     assert flatten_zip_cycle_iter.__next__() == (1,)
     assert flatten_zip_cycle_iter.__next__() == (2,)
     assert flatten_zip_cycle_iter.__next__() == (3,)
+    with pytest.raises(StopIteration):
+        flatten_zip_cycle_iter.__next__()
 
 
 def test_flatten_sorted():

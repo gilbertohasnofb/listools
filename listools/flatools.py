@@ -65,7 +65,7 @@ def flatten(input_list: list) -> list:
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     def _flatten_aux(input_list, aux_list=None):
         if aux_list is None:
             aux_list = []
@@ -113,9 +113,9 @@ def pflatten(input_list: list, depth: int = 1) -> list:
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     if not isinstance(depth, int):
-        raise TypeError('depth should be an \'int\'')
+        raise TypeError('\'depth\' must be \'int\'')
     aux_list = input_list[:]
     for _ in range(depth):
         output_list = []
@@ -159,7 +159,7 @@ def flatten_join(*input_lists: list) -> list:
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
-        raise TypeError('*input_lists should be one or more \'list\' objects')
+        raise TypeError('\'*input_lists\' must be one or more \'list\'')
     output_list = []
     for input_list in input_lists:
         output_list += (flatten(input_list))
@@ -199,7 +199,7 @@ def flatten_sum(input_list: list, start=0):
     10
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return sum(flatten(input_list), start)
 
 
@@ -220,7 +220,7 @@ def flatten_len(input_list: list) -> int:
     8
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return len(flatten(input_list))
 
 
@@ -248,9 +248,9 @@ def flatten_index(element, input_list: list) -> int:
     ValueError: 7 is not in list
     """
     if isinstance(element, list):
-        raise TypeError('element cannot be a \'list\'')
+        raise TypeError('\'element\' must not be \'list\'')
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return flatten(input_list).index(element)
 
 
@@ -300,12 +300,12 @@ def flatten_zip_cycle(*input_lists) -> tuple:
     lists as input due to its flatenning function.
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
-        raise TypeError('*input_lists should be one or more \'list\' objects')
+        raise TypeError('\'*input_lists\' must be one or more \'list\'')
     flatten_lists = []
     for input_list in input_lists:
         flatten_lists.append(flatten(input_list))
-    aux = max([len(flatten_list) for flatten_list in flatten_lists])
-    for i in range(aux):
+    max_length = max([len(flatten_list) for flatten_list in flatten_lists])
+    for i in range(max_length):
         output_list = []
         for flatten_list in flatten_lists:
             output_list.append(flatten_list[i % len(flatten_list)])
@@ -358,7 +358,7 @@ def flatten_sorted(input_list: list,
     [5, 4, 3, 2, 1]
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return sorted(flatten(input_list), key=key, reverse=reverse)
 
 
@@ -389,7 +389,7 @@ def flatten_reverse(input_list: list) -> list:
     [7.8, 6.6, 5, 3, 1.4, -3.1]
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return sorted(flatten(input_list), reverse=True)
 
 
@@ -443,7 +443,7 @@ def flatten_max(input_list: list,
     -100
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     # not very elegant, but max(input, key=None) raises "TypeError: 'NoneType'
     # object is not callable". Meanwhile, sorted(input, key=None) works exactly
     # as expected.
@@ -503,7 +503,7 @@ def flatten_min(input_list: list,
     -100
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     # not very elegant, but min(input, key=None) raises "TypeError: 'NoneType'
     # object is not callable". Meanwhile, sorted(input, key=None) works exactly
     # as expected.
@@ -546,7 +546,7 @@ def flatten_single_type(input_list: list) -> bool:
     False
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return len(set(map(type, flatten(input_list)))) == 1
 
 
@@ -583,5 +583,5 @@ def flatten_mixed_type(input_list: list) -> bool:
     False
     """
     if not isinstance(input_list, list):
-        raise TypeError('input_list should be a \'list\'')
+        raise TypeError('\'input_list\' must be \'list\'')
     return len(set(map(type, flatten(input_list)))) > 1

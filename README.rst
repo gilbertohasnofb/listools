@@ -7,7 +7,7 @@ listools
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
-This package contains three modules: `flatools`, `iterz` and `llogic`. The complete list of functions available is:
+This package contains four modules: `flatools`, `iterz`, `llogic` and `lmaths`. The complete list of functions available is:
 
 * `flatools.flatten_index(element, input_list)`
 * `flatools.flatten_join(*input_lists)`
@@ -22,7 +22,15 @@ This package contains three modules: `flatools`, `iterz` and `llogic`. The compl
 * `flatools.flatten_zip_cycle(*input_lists)`
 * `flatools.flatten(input_list)`
 * `flatools.pflatten(input_list[, depth])`
+
+* `iterz.cycle_until_index(input_iter, i)`
+* `iterz.inf_cycle(input_iter)`
+* `iterz.ncycles(input_iter, n)`
 * `iterz.zip_cycle(*input_iters)`
+* `iterz.zip_each(*input_iters)`
+* `iterz.zip_inf_cycle(*input_iters)`
+* `iterz.zip_syzygy(*input_iters)`
+
 * `llogic.difference(list_1, list_2)`
 * `llogic.intersection(list_1, list_2)`
 * `llogic.is_contained(list_1, list_2)`
@@ -30,6 +38,9 @@ This package contains three modules: `flatools`, `iterz` and `llogic`. The compl
 * `llogic.single_type(input_list)`
 * `llogic.symmetric_difference(list_1, list_2)`
 * `llogic.union(list_1, list_2)`
+
+* `lmaths.list_lcm(input_list)`
+* `lmaths.list_gcd(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
