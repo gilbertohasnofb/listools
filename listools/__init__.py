@@ -12,7 +12,9 @@ complete list of functions available is:
 * `flatools.flatten_len(input_list)`
 * `flatools.flatten_max(input_list, *[, key, default])`
 * `flatools.flatten_min(input_list, *[, key, default])`
+* `flatools.flatten_mixed_type(input_list)`
 * `flatools.flatten_reverse(input_list)`
+* `flatools.flatten_single_type(input_list)`
 * `flatools.flatten_sorted(input_list, *[, key, reverse])`
 * `flatools.flatten_sum(input_list[, start])`
 * `flatools.flatten_zip_cycle(*input_lists)`

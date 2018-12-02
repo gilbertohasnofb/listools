@@ -28,7 +28,9 @@ full list of available functions is:
 * `flatools.flatten_len(input_list)`
 * `flatools.flatten_max(input_list, *[, key, default])`
 * `flatools.flatten_min(input_list, *[, key, default])`
+* `flatools.flatten_mixed_type(input_list)`
 * `flatools.flatten_reverse(input_list)`
+* `flatools.flatten_single_type(input_list)`
 * `flatools.flatten_sorted(input_list, *[, key, reverse])`
 * `flatools.flatten_sum(input_list[, start])`
 * `flatools.flatten_zip_cycle(*input_lists)`
@@ -495,9 +497,9 @@ def flatten_min(input_list: list,
 
     >>> alist = [1, 2, 3]
     >>> blist = []
-    >>> print(flatten_max(alist, default=-100))
+    >>> print(flatten_min(alist, default=-100))
     1
-    >>> print(flatten_max(blist, default=-100))
+    >>> print(flatten_min(blist, default=-100))
     -100
     """
     if not (isinstance(input_list, list)):
@@ -509,3 +511,77 @@ def flatten_min(input_list: list,
         return min(flatten(input_list), key=key, default=default)
     else:
         return min(flatten(input_list), default=default)
+
+
+def flatten_single_type(input_list: list) -> bool:
+    r"""flatools.flatten_single_type(input_list)
+
+    Returns True if all elements of the flattened input_list are of the same
+    type and False if they are not. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> flatools.flatten_single_type(alist)
+    True
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> flatools.flatten_single_type(alist)
+    True
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> flatools.flatten_single_type(alist)
+    True
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> flatools.flatten_single_type(alist)
+    False
+
+    >>> alist = ['foo', ['bar', ('foo', 'bar')]]
+    >>> flatools.flatten_single_type(alist)
+    False
+
+    Note that empty lists return False:
+
+    >>> alist = []
+    >>> flatools.flatten_single_type(alist)
+    False
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return len(set(map(type, flatten(input_list)))) == 1
+
+
+def flatten_mixed_type(input_list: list) -> bool:
+    r"""flatools.flatten_mixed_type(input_list)
+
+    Returns False if all elements of the flattened input_list are of the same
+    type and True if they are not. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> flatools.flatten_mixed_type(alist)
+    False
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> flatools.flatten_mixed_type(alist)
+    False
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> flatools.flatten_mixed_type(alist)
+    False
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> flatools.flatten_mixed_type(alist)
+    True
+
+    >>> alist = ['foo', ['bar', ('foo', 'bar')]]
+    >>> flatools.flatten_mixed_type(alist)
+    True
+
+    Note that empty lists return False:
+
+    >>> alist = []
+    >>> flatools.flatten_mixed_type(alist)
+    False
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return len(set(map(type, flatten(input_list)))) > 1
