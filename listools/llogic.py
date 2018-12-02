@@ -23,9 +23,81 @@
 """The module `llogic` contains functions that deal with logic operations on
 lists. The full list of available functions is:
 
-*
+* `llogic.mixed_type(input_list)`
+* `llogic.single_type(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.
 """
+
+def single_type(input_list: list) -> bool:
+    r"""llogic.single_type(input_list)
+
+    Returns True if all elements of an input_list are of the same type and
+    False if they are not. Usage:
+
+    >>> alist = [3, 4, 1, 5, 2]
+    >>> llogic.single_type(alist)
+    True
+
+    >>> alist = [3.1, 4, 1, 5, '2']
+    >>> llogic.single_type(alist)
+    False
+
+    Note that llogic does not flatten the lists so nested lists are of type
+    list:
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> llogic.single_type(alist)
+    False
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> llogic.single_type(alist)
+    True
+
+    Also note that empty lists return False:
+
+    >>> alist = []
+    >>> llogic.single_type(alist)
+    False
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return len(set(map(type, input_list))) == 1
+
+
+def mixed_type(input_list: list) -> bool:
+    r"""llogic.mixed_type(input_list)
+
+    Returns False if all elements of an input_list are of the same type and
+    True if they are not. Usage:
+
+    >>> alist = [3, 4, 1, 5, 2]
+    >>> llogic.single_type(alist)
+    False
+
+    >>> alist = [3.1, 4, 1, 5, '2']
+    >>> llogic.single_type(alist)
+    True
+
+    Note that llogic does not flatten the lists so nested lists are of type
+    list:
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> llogic.single_type(alist)
+    True
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> llogic.single_type(alist)
+    False
+
+    Also note that empty lists return False:
+
+    >>> alist = []
+    >>> llogic.single_type(alist)
+    False
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    return len(set(map(type, input_list))) > 1

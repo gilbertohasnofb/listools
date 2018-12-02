@@ -23,6 +23,8 @@ This package contains three modules: `flatools`, `iterz` and `llogic`. The compl
 * `flatools.flatten(input_list)`
 * `flatools.pflatten(input_list[, depth])`
 * `iterz.zip_cycle(*input_iters)`
+* `llogic.mixed_type(input_list)`
+* `llogic.single_type(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 

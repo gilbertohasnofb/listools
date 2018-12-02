@@ -21,6 +21,8 @@ complete list of functions available is:
 * `flatools.flatten(input_list)`
 * `flatools.pflatten(input_list[, depth])`
 * `iterz.zip_cycle(*input_iters)`
+* `llogic.mixed_type(input_list)`
+* `llogic.single_type(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
