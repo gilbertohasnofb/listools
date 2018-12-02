@@ -34,6 +34,7 @@ This package contains four modules: `flatools`, `iterz`, `listutils` and `llogic
 
 * `listutils.list_lcm(input_list)`
 * `listutils.list_mask(input_list, mask)`
+* `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
 
 * `llogic.difference(list_1, list_2)`
