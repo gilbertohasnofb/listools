@@ -28,8 +28,8 @@ The full list of available functions is:
 * `iterz.iter_mask(input_iter, mask)`
 * `iterz.ncycles(input_iter, n)`
 * `iterz.zip_cycle(*input_iters)`
-* `iterz.zip_each(*input_iters)`
 * `iterz.zip_inf_cycle(*input_iters)`
+* `iterz.zip_longest(*input_iters[, default])`
 * `iterz.zip_syzygy(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.
@@ -101,15 +101,16 @@ def zip_cycle(*input_iters) -> tuple:
         yield tuple(output_list)
 
 
-def zip_each(*input_iters) -> tuple:
-    r"""iterz.zip_each(*input_iters)
+def zip_longest(*input_iters, default=None) -> tuple:
+    r"""iterz.zip_longest(*input_iters[, default])
 
-    Similar to zip but cycles yields outputs until the longest one is
-    completely output while any exhausted iter yield None. Usage:
+    Similar to zip_cycle but yields values until the longest of the input
+    iterators is exhausted. Shorter iterators yields None when exhausted.
+    Usage:
 
     >>> alist = [1, 2]
     >>> blist = [4, 5, 6, 7, 8]
-    >>> for i, j in iterz.zip_each(alist, blist):
+    >>> for i, j in iterz.zip_longest(alist, blist):
     ...     print(i, j)
     1 4
     2 5
@@ -123,7 +124,7 @@ def zip_each(*input_iters) -> tuple:
     >>> blist = [1, 2, 3]
     >>> clist = [1, 2, 3, 4]
     >>> dlist = [1, 2, 3, 4, 5]
-    >>> for i, j, k, l in iterz.zip_each(alist, blist, clist, dlist):
+    >>> for i, j, k, l in iterz.zip_longest(alist, blist, clist, dlist):
     ...     print(i, j, k, l)
     1 1 1 1
     2 2 2 2
@@ -136,7 +137,7 @@ def zip_each(*input_iters) -> tuple:
     >>> a = (1, 2, 3)
     >>> b = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
     >>> c = 'abcde'
-    >>> for i, j, k in iterz.zip_each(a, b, c):
+    >>> for i, j, k in iterz.zip_longest(a, b, c):
     ...     print(i, j, k)
     1 1.0 a
     2 2.0 b
@@ -145,6 +146,20 @@ def zip_each(*input_iters) -> tuple:
     None 5.0 e
     None 6.0 None
     None 7.0 None
+
+    The value None can be changed using the keyword argument default:
+
+    >>> alist = [1, 2]
+    >>> blist = [1, 2, 3, 4]
+    >>> clist = [1, 2, 3, 4, 5, 6]
+    >>> for i, j, k, l in iterz.zip_longest(alist, blist, clist, default=0):
+    ...     print(i, j, k, l)
+    1 1 1
+    2 2 2
+    0 3 3
+    0 4 4
+    0 0 5
+    0 0 6
     """
     for input_iter in input_iters:
         try:
@@ -160,7 +175,7 @@ def zip_each(*input_iters) -> tuple:
             if i < len(input_iter):
                 output_list.append(input_iter[i])
             else:
-                output_list.append(None)
+                output_list.append(default)
         yield tuple(output_list)
 
 

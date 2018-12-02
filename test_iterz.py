@@ -54,44 +54,44 @@ def test_zip_cycle():
         iterz.zip_cycle(alist).__next__()
 
 
-def test_zip_each():
+def test_zip_longest():
     alist = [1, 2]
     blist = [4, 5, 6, 7, 8]
-    zip_each_iter = iterz.zip_each(alist, blist)
-    assert zip_each_iter.__next__() == (1, 4)
-    assert zip_each_iter.__next__() == (2, 5)
-    assert zip_each_iter.__next__() == (None, 6)
-    assert zip_each_iter.__next__() == (None, 7)
-    assert zip_each_iter.__next__() == (None, 8)
+    zip_longest_iter = iterz.zip_longest(alist, blist)
+    assert zip_longest_iter.__next__() == (1, 4)
+    assert zip_longest_iter.__next__() == (2, 5)
+    assert zip_longest_iter.__next__() == (None, 6)
+    assert zip_longest_iter.__next__() == (None, 7)
+    assert zip_longest_iter.__next__() == (None, 8)
 
     alist = [1, 2]
     blist = [1, 2, 3]
     clist = [1, 2, 3, 4]
     dlist = [1, 2, 3, 4, 5]
-    zip_each_iter = iterz.zip_each(alist, blist, clist, dlist)
-    assert zip_each_iter.__next__() == (1, 1, 1, 1)
-    assert zip_each_iter.__next__() == (2, 2, 2, 2)
-    assert zip_each_iter.__next__() == (None, 3, 3, 3)
-    assert zip_each_iter.__next__() == (None, None, 4, 4)
-    assert zip_each_iter.__next__() == (None, None, None, 5)
+    zip_longest_iter = iterz.zip_longest(alist, blist, clist, dlist)
+    assert zip_longest_iter.__next__() == (1, 1, 1, 1)
+    assert zip_longest_iter.__next__() == (2, 2, 2, 2)
+    assert zip_longest_iter.__next__() == (None, 3, 3, 3)
+    assert zip_longest_iter.__next__() == (None, None, 4, 4)
+    assert zip_longest_iter.__next__() == (None, None, None, 5)
 
     a = (1, 2, 3)
     b = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0]
     c = 'abcde'
-    zip_each_iter = iterz.zip_each(a, b, c)
-    assert zip_each_iter.__next__() == (1, 1.0, 'a')
-    assert zip_each_iter.__next__() == (2, 2.0, 'b')
-    assert zip_each_iter.__next__() == (3, 3.0, 'c')
-    assert zip_each_iter.__next__() == (None, 4.0, 'd')
-    assert zip_each_iter.__next__() == (None, 5.0, 'e')
-    assert zip_each_iter.__next__() == (None, 6.0, None)
-    assert zip_each_iter.__next__() == (None, 7.0, None)
+    zip_longest_iter = iterz.zip_longest(a, b, c)
+    assert zip_longest_iter.__next__() == (1, 1.0, 'a')
+    assert zip_longest_iter.__next__() == (2, 2.0, 'b')
+    assert zip_longest_iter.__next__() == (3, 3.0, 'c')
+    assert zip_longest_iter.__next__() == (None, 4.0, 'd')
+    assert zip_longest_iter.__next__() == (None, 5.0, 'e')
+    assert zip_longest_iter.__next__() == (None, 6.0, None)
+    assert zip_longest_iter.__next__() == (None, 7.0, None)
 
     alist = [1, 2, 3]
-    zip_each_iter = iterz.zip_each(a)
-    assert zip_each_iter.__next__() == (1,)
-    assert zip_each_iter.__next__() == (2,)
-    assert zip_each_iter.__next__() == (3,)
+    zip_longest_iter = iterz.zip_longest(a)
+    assert zip_longest_iter.__next__() == (1,)
+    assert zip_longest_iter.__next__() == (2,)
+    assert zip_longest_iter.__next__() == (3,)
 
     alist = []
     with pytest.raises(IndexError):
@@ -145,6 +145,17 @@ def test_zip_inf_cycle():
     assert zip_inf_cycle_iter.__next__() == (1,)
     assert zip_inf_cycle_iter.__next__() == (2,)
     assert zip_inf_cycle_iter.__next__() == (3,)
+
+    alist = [1, 2]
+    blist = [1, 2, 3, 4]
+    clist = [1, 2, 3, 4, 5, 6]
+    zip_inf_cycle_iter = iterz.zip_longest(alist, blist, clist, default=0)
+    assert zip_inf_cycle_iter.__next__() == (1, 1, 1)
+    assert zip_inf_cycle_iter.__next__() == (2, 2, 2)
+    assert zip_inf_cycle_iter.__next__() == (0, 3, 3)
+    assert zip_inf_cycle_iter.__next__() == (0, 4, 4)
+    assert zip_inf_cycle_iter.__next__() == (0, 0, 5)
+    assert zip_inf_cycle_iter.__next__() == (0, 0, 6)
 
     alist = []
     with pytest.raises(IndexError):

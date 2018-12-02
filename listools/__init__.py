@@ -26,8 +26,8 @@ This package contains three modules: `flatools`, `iterz`, `llogic` and
 * `iterz.iter_mask(input_iter, mask)`
 * `iterz.ncycles(input_iter, n)`
 * `iterz.zip_cycle(*input_iters)`
-* `iterz.zip_each(*input_iters)`
 * `iterz.zip_inf_cycle(*input_iters)`
+* `iterz.zip_longest(*input_iters[, default])`
 * `iterz.zip_syzygy(*input_iters)`
 
 * `llogic.difference(list_1, list_2)`
