@@ -181,3 +181,51 @@ def test_flatten_reverse():
     assert flatools.flatten_reverse(alist) == expected_result
 
     assert flatools.flatten_reverse([]) == []
+
+
+def test_flatten_max():
+    alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    assert flatools.flatten_max(alist) == 10
+
+    alist = [3, 4, [1, [5, 2]]]
+    assert flatools.flatten_max(alist) == 5
+
+    alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    assert flatools.flatten_max(alist) == 9.41
+
+    alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    assert flatools.flatten_max(alist) == 7.8
+
+    alist = [-1, -5, [3, [-2, 4]]]
+    assert flatools.flatten_max(alist) == 4
+    assert flatools.flatten_max(alist, key=abs) == -5
+
+    alist = [1, 2, 3]
+    assert flatools.flatten_max(alist, default=-100) == 3
+
+    alist = []
+    assert flatools.flatten_max(alist, default=-100) == -100
+
+
+def test_flatten_min():
+    alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    assert flatools.flatten_min(alist) == 1
+
+    alist = [3, 4, [1, [5, 2]]]
+    assert flatools.flatten_min(alist) == 1
+
+    alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    assert flatools.flatten_min(alist) ==-3.14
+
+    alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    assert flatools.flatten_min(alist) == -3.1
+
+    alist = [-1, -5, [3, [-2, 4]]]
+    assert flatools.flatten_min(alist) == -5
+    assert flatools.flatten_min(alist, key=abs) == -1
+
+    alist = [1, 2, 3]
+    assert flatools.flatten_min(alist, default=-100) == 1
+
+    alist = []
+    assert flatools.flatten_min(alist, default=-100) == -100

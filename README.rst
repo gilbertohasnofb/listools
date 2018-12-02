@@ -12,8 +12,10 @@ This package contains three modules: `flatools`, `iterz` and `llogic`. The compl
 * `flatools.flatten_index(element, input_list)`
 * `flatools.flatten_join(*input_lists)`
 * `flatools.flatten_len(input_list)`
+* `flatools.flatten_max(input_list, *[, key, default])`
+* `flatools.flatten_min(input_list, *[, key, default])`
 * `flatools.flatten_reverse(input_list)`
-* `flatools.flatten_sorted(input_list, *[, key][, reverse])`
+* `flatools.flatten_sorted(input_list, *[, key, reverse])`
 * `flatools.flatten_sum(input_list[, start])`
 * `flatools.flatten_zip_cycle(*input_lists)`
 * `flatools.flatten(input_list)`

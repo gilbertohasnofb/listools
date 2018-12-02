@@ -26,8 +26,10 @@ full list of available functions is:
 * `flatools.flatten_index(element, input_list)`
 * `flatools.flatten_join(*input_lists)`
 * `flatools.flatten_len(input_list)`
+* `flatools.flatten_max(input_list, *[, key, default])`
+* `flatools.flatten_min(input_list, *[, key, default])`
 * `flatools.flatten_reverse(input_list)`
-* `flatools.flatten_sorted(input_list, *[, key][, reverse])`
+* `flatools.flatten_sorted(input_list, *[, key, reverse])`
 * `flatools.flatten_sum(input_list[, start])`
 * `flatools.flatten_zip_cycle(*input_lists)`
 * `flatools.flatten(input_list)`
@@ -313,7 +315,7 @@ def flatten_sorted(input_list: list,
                    key: 'function' = None,
                    reverse: bool = False,
                    ) -> list:
-    r"""flatools.flatten_sorted(input_list, *[, key][, reverse])
+    r"""flatools.flatten_sorted(input_list, *[, key, reverse])
 
     Completely flattens a list containing any number of nested subslists into a
     flatten_sorted one dimensional list. Usage:
@@ -387,3 +389,123 @@ def flatten_reverse(input_list: list) -> list:
     if not (isinstance(input_list, list)):
         raise TypeError('input_list should be a \'list\'')
     return sorted(flatten(input_list), reverse=True)
+
+
+def flatten_max(input_list: list,
+                *,
+                key: 'function' = None,
+                default=None,
+                ) -> list:
+    r"""flatools.flatten_max(input_list, *[, key, default])
+
+    Finds the largest element of a  flattened list containing any number of
+    nested subslists. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> flatools.flatten_max(alist)
+    10
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> flatools.flatten_max(alist)
+    5
+
+    The list can also be made out of floats:
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> flatools.flatten_max(alist)
+    9.41
+
+    Or it can be made out of a mixture of integers and floats:
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> flatools.flatten_max(alist)
+    7.8
+
+    There are two optional arguments that can be used. The first is a called
+    'key' and takes a function that serves as a key for the sort comparison.
+
+    >>> alist = [-1, -5, [3, [-2, 4]]]
+    >>> print(flatten_max(alist))
+    4
+    >>> print(flatten_max(alist, key=abs))
+    -5
+
+    The second is 'default', which is the value that the function defaults to
+    when the input is an empty list:
+
+    >>> alist = [1, 2, 3]
+    >>> blist = []
+    >>> print(flatten_max(alist, default=-100))
+    3
+    >>> print(flatten_max(blist, default=-100))
+    -100
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    # not very elegant, but max(input, key=None) raises "TypeError: 'NoneType'
+    # object is not callable". Meanwhile, sorted(input, key=None) works exactly
+    # as expected.
+    if key:
+        return max(flatten(input_list), key=key, default=default)
+    else:
+        return max(flatten(input_list), default=default)
+
+
+def flatten_min(input_list: list,
+                *,
+                key: 'function' = None,
+                default=None,
+                ) -> list:
+    r"""flatools.flatten_min(input_list, *[, key, default])
+
+    Finds the smallest element of a  flattened list containing any number of
+    nested subslists. Usage:
+
+    >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    >>> flatools.flatten_min(alist)
+    1
+
+    >>> alist = [3, 4, [1, [5, 2]]]
+    >>> flatools.flatten_min(alist)
+    1
+
+    The list can also be made out of floats:
+
+    >>> alist = [[1.73, -3.14, 9.41], [5.56, -1.03]]
+    >>> flatools.flatten_min(alist)
+    -3.14
+
+    Or it can be made out of a mixture of integers and floats:
+
+    >>> alist = [[3, 1.4], [5, 7.8], [-3.1, 6.6]]
+    >>> flatools.flatten_min(alist)
+    -3.1
+
+    There are two optional arguments that can be used. The first is a called
+    'key' and takes a function that serves as a key for the sort comparison.
+
+    >>> alist = [-1, -5, [3, [-2, 4]]]
+    >>> print(flatten_min(alist))
+    -5
+    >>> print(flatten_min(alist, key=abs))
+    -1
+
+    The second is 'default', which is the value that the function defaults to
+    when the input is an empty list:
+
+    >>> alist = [1, 2, 3]
+    >>> blist = []
+    >>> print(flatten_max(alist, default=-100))
+    1
+    >>> print(flatten_max(blist, default=-100))
+    -100
+    """
+    if not (isinstance(input_list, list)):
+        raise TypeError('input_list should be a \'list\'')
+    # not very elegant, but min(input, key=None) raises "TypeError: 'NoneType'
+    # object is not callable". Meanwhile, sorted(input, key=None) works exactly
+    # as expected.
+    if key:
+        return min(flatten(input_list), key=key, default=default)
+    else:
+        return min(flatten(input_list), default=default)
