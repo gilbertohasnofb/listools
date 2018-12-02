@@ -21,9 +21,9 @@
 # SOFTWARE.
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, find_packages
 
 import listools
 
@@ -52,7 +52,7 @@ setup(
     author='Gilberto Agostinho',
     author_email='gilbertohasnofb@gmail.com',
     version=listools.__version__,
-    py_modules=["listools"],
+    packages=find_packages(),
     url='https://github.com/gilbertohasnofb/listools',
     license='MIT',
     long_description=listools_long_description,
