@@ -40,6 +40,7 @@ This package contains four modules: `flatools`, `iterz`, `llogic` and `listutils
 * `llogic.union(list_1, list_2)`
 
 * `listutils.list_lcm(input_list)`
+* `listutils.list_mask(input_list, mask)`
 * `listutils.list_gcd(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.

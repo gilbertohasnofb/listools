@@ -49,6 +49,10 @@ def test_zip_cycle():
     with pytest.raises(StopIteration):
         zip_cycle_iter.__next__()
 
+    alist = []
+    with pytest.raises(IndexError):
+        iterz.zip_cycle(alist).__next__()
+
 
 def test_zip_each():
     alist = [1, 2]
@@ -88,6 +92,11 @@ def test_zip_each():
     assert zip_each_iter.__next__() == (1,)
     assert zip_each_iter.__next__() == (2,)
     assert zip_each_iter.__next__() == (3,)
+
+    alist = []
+    with pytest.raises(IndexError):
+        iterz.zip_cycle(alist).__next__()
+
 
 def test_zip_inf_cycle():
     alist = [1, 2]
@@ -136,6 +145,10 @@ def test_zip_inf_cycle():
     assert zip_inf_cycle_iter.__next__() == (1,)
     assert zip_inf_cycle_iter.__next__() == (2,)
     assert zip_inf_cycle_iter.__next__() == (3,)
+
+    alist = []
+    with pytest.raises(IndexError):
+        iterz.zip_cycle(alist).__next__()
 
 
 def test_zip_syzygy():
@@ -195,6 +208,10 @@ def test_zip_syzygy():
     assert zip_syzygy_iter.__next__() == (3,)
     with pytest.raises(StopIteration):
         zip_syzygy_iter.__next__()
+
+    alist = []
+    with pytest.raises(IndexError):
+        iterz.zip_cycle(alist).__next__()
 
 
 def test_inf_cycle():

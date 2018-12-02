@@ -90,6 +90,8 @@ def zip_cycle(*input_iters) -> tuple:
             iterator = iter(input_iter)
         except:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
+    if any(len(input_iter) == 0 for input_iter in input_iters):
+        raise IndexError('all elements of \'*input_iters\' must have len > 0')
     max_length = max([len(input_iter) for input_iter in input_iters])
     for i in range(max_length):
         output_list = []
@@ -148,6 +150,8 @@ def zip_each(*input_iters) -> tuple:
             iterator = iter(input_iter)
         except:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
+    if any(len(input_iter) == 0 for input_iter in input_iters):
+        raise IndexError('all elements of \'*input_iters\' must have len > 0')
     max_length = max([len(input_iter) for input_iter in input_iters])
     for i in range(max_length):
         output_list = []
@@ -220,6 +224,8 @@ def zip_inf_cycle(*input_iters) -> tuple:
             iterator = iter(input_iter)
         except:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
+    if any(len(input_iter) == 0 for input_iter in input_iters):
+        raise IndexError('all elements of \'*input_iters\' must have len > 0')
     for i in count():
         output_list = []
         for input_iter in input_iters:
@@ -289,6 +295,8 @@ def zip_syzygy(*input_iters) -> tuple:
             iterator = iter(input_iter)
         except:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
+    if any(len(input_iter) == 0 for input_iter in input_iters):
+        raise IndexError('all elements of \'*input_iters\' must have len > 0')
     lcm = list_lcm([len(input_iter) for input_iter in input_iters])
     for i in range(lcm):
         output_list = []
