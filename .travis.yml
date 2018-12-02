@@ -5,7 +5,5 @@ python:
   - 3.6-dev
   - 3.7-dev
 cache: pip
-install:
-  - pip install listools
 script:
   - python -m pytest -v
