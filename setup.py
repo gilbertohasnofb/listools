@@ -51,5 +51,5 @@ setup(
     long_description=listools_long_description,
     tests_require=['pytest'],
     classifiers=listools_classifiers,
-    python_requires='>=3.4',
+    python_requires='>=3.5',
 )
