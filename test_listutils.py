@@ -54,9 +54,9 @@ def test_list_mask():
     mask = [1, 0]
     assert listutils.list_mask(alist, mask) == [1, 3, 5, 7, 9]
 
-    alist = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    alist = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     mask = [True, False, True]
-    assert listutils.list_mask(alist, mask) == [1, True, 'foo', None, (3+2j)]
+    assert listutils.list_mask(alist, mask) == [1, True, 'foo', None, 3+2j]
 
     alist = []
     mask = [True, False, True]

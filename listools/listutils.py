@@ -112,10 +112,10 @@ def list_mask(input_list: list, mask: list) -> list:
 
     The input list can contain any datatypes:
 
-    >>> alist = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    >>> alist = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     >>> mask = [True, False, True]
     >>> listutils.list_mask(alist, mask)
-    [1, True, 'foo', None, (3+2j)]
+    [1, True, 'foo', None, 3+2j]
 
     The input list can be empty, in which case an empty list is return. On the
     other hand, the mask argument cannot be an empty list.

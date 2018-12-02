@@ -301,3 +301,55 @@ def test_cycle_until_index():
     cycle_until_index_iter = iterz.cycle_until_index(alist, 1)
     with pytest.raises(StopIteration):
         cycle_until_index_iter.__next__()
+
+
+def test_iter_mask():
+    alist = [1, 2, 3]
+    mask = [True, False, True]
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    assert iter_mask_iter.__next__() == 1
+    assert iter_mask_iter.__next__() == 3
+    with pytest.raises(StopIteration):
+        iter_mask_iter.__next__()
+
+    alist = [1, 2, 3, 4, 5]
+    mask = [1, 0, 0, 1, 0]
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    assert iter_mask_iter.__next__() == 1
+    assert iter_mask_iter.__next__() == 4
+    with pytest.raises(StopIteration):
+        iter_mask_iter.__next__()
+
+    alist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    mask = [1, 0]
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    assert iter_mask_iter.__next__() == 1
+    assert iter_mask_iter.__next__() == 3
+    assert iter_mask_iter.__next__() == 5
+    assert iter_mask_iter.__next__() == 7
+    assert iter_mask_iter.__next__() == 9
+    with pytest.raises(StopIteration):
+        iter_mask_iter.__next__()
+
+    alist = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
+    mask = [True, False, True]
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    assert iter_mask_iter.__next__() == 1
+    assert iter_mask_iter.__next__() == True
+    assert iter_mask_iter.__next__() == 'foo'
+    assert iter_mask_iter.__next__() == None
+    assert iter_mask_iter.__next__() == 3+2j
+    with pytest.raises(StopIteration):
+        iter_mask_iter.__next__()
+
+    alist = []
+    mask = [True, False, True]
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    with pytest.raises(StopIteration):
+        iter_mask_iter.__next__()
+
+    alist = [1, 2, 3]
+    mask = []
+    iter_mask_iter = iterz.iter_mask(alist, mask)
+    with pytest.raises(IndexError):
+        iter_mask_iter.__next__()

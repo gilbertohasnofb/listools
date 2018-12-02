@@ -60,9 +60,9 @@ def flatten(input_list: list) -> list:
 
     Notice that the list themselves can be made out of any datatypes:
 
-    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     >>> flatools.flatten(alist)
-    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     """
     if not isinstance(input_list, list):
         raise TypeError('\'input_list\' must be \'list\'')
@@ -108,9 +108,9 @@ def pflatten(input_list: list, depth: int = 1) -> list:
 
     Notice that the list themselves can be made out of any datatypes:
 
-    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     >>> flatools.flatten(alist, depth=3)
-    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     """
     if not isinstance(input_list, list):
         raise TypeError('\'input_list\' must be \'list\'')
@@ -154,9 +154,9 @@ def flatten_join(*input_lists: list) -> list:
 
     >>> alist = [1, [2.2, True]]
     >>> blist = ['foo', [(1, 4), None]]
-    >>> clist = [(3+2j), {'a': 1}]
+    >>> clist = [3+2j, {'a': 1}]
     >>> flatools.flatten_join(alist, blist, clist)
-    [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     """
     if not all(isinstance(input_list, list) for input_list in input_lists):
         raise TypeError('\'*input_lists\' must be one or more \'list\'')
@@ -215,7 +215,7 @@ def flatten_len(input_list: list) -> int:
 
     The datatypes of the elements of the list do not matter:
 
-    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     >>> flatools.flatten_len(alist)
     8
     """
@@ -236,7 +236,7 @@ def flatten_index(element, input_list: list) -> int:
 
     The datatypes of the elements of the list do not matter:
 
-    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    >>> alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     >>> flatools.flatten_index(None, alist)
     5
 

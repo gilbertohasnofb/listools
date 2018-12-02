@@ -10,8 +10,8 @@ def test_flatten():
     alist = [1, 2, [3, [[4], 5]]]
     assert flatools.flatten(alist) == [1, 2, 3, 4, 5]
 
-    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    expected_result = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
+    expected_result = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     assert flatools.flatten(alist) == expected_result
 
     assert flatools.flatten([]) == []
@@ -27,8 +27,8 @@ def test_pflatten():
     assert flatools.pflatten(alist, depth=3) == [1, 2, 3, 4, 5]
     assert flatools.pflatten(alist, depth=4) == [1, 2, 3, 4, 5]
 
-    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
-    expected_result = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
+    expected_result = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     assert flatools.pflatten(alist, depth=3) == expected_result
 
     assert flatools.pflatten([]) == []
@@ -51,8 +51,8 @@ def test_flatten_join():
 
     alist = [1, [2.2, True]]
     blist = ['foo', [(1, 4), None]]
-    clist = [(3+2j), {'a': 1}]
-    expected_result = [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
+    clist = [3+2j, {'a': 1}]
+    expected_result = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     assert flatools.flatten_join(alist, blist, clist) == expected_result
 
     alist = [[1, 2], [3, 4], [5], [6, 7, 8], [9, 10]]
@@ -85,7 +85,7 @@ def test_flatten_len():
     alist = [[1, 2], [3, 4], [5, 6]]
     assert flatools.flatten_len(alist) == 6
 
-    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     assert flatools.flatten_len(alist) == 8
 
     alist = []
@@ -96,7 +96,7 @@ def test_flatten_index():
     alist = [[1, 2], [3, 4], [5, 6]]
     assert flatools.flatten_index(3, alist) == 2
 
-    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [(3+2j), {'a': 1}]]
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
     assert flatools.flatten_index(None, alist) == 5
 
     with pytest.raises(ValueError):

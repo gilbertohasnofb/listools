@@ -23,6 +23,7 @@ This package contains three modules: `flatools`, `iterz`, `llogic` and
 
 * `iterz.cycle_until_index(input_iter, i)`
 * `iterz.inf_cycle(input_iter)`
+* `iterz.iter_mask(input_iter, mask)`
 * `iterz.ncycles(input_iter, n)`
 * `iterz.zip_cycle(*input_iters)`
 * `iterz.zip_each(*input_iters)`
