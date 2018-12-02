@@ -64,7 +64,7 @@ def flatten(input_list: list) -> list:
     >>> flatools.flatten(alist)
     [1, 2.2, True, 'foo', (1, 4), None, (3+2j), {'a': 1}]
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     def _flatten_aux(input_list, aux_list=None):
         if aux_list is None:
@@ -198,7 +198,7 @@ def flatten_sum(input_list: list, start=0):
     >>> flatools.flatten_sum(alist, start=4)
     10
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return sum(flatten(input_list), start)
 
@@ -219,7 +219,7 @@ def flatten_len(input_list: list) -> int:
     >>> flatools.flatten_len(alist)
     8
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return len(flatten(input_list))
 
@@ -249,7 +249,7 @@ def flatten_index(element, input_list: list) -> int:
     """
     if isinstance(element, list):
         raise TypeError('element cannot be a \'list\'')
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return flatten(input_list).index(element)
 
@@ -357,7 +357,7 @@ def flatten_sorted(input_list: list,
     >>> print(flatten_sorted(alist, reverse=True))
     [5, 4, 3, 2, 1]
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return sorted(flatten(input_list), key=key, reverse=reverse)
 
@@ -388,7 +388,7 @@ def flatten_reverse(input_list: list) -> list:
     >>> flatools.flatten_reverse(alist)
     [7.8, 6.6, 5, 3, 1.4, -3.1]
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return sorted(flatten(input_list), reverse=True)
 
@@ -442,7 +442,7 @@ def flatten_max(input_list: list,
     >>> print(flatten_max(blist, default=-100))
     -100
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     # not very elegant, but max(input, key=None) raises "TypeError: 'NoneType'
     # object is not callable". Meanwhile, sorted(input, key=None) works exactly
@@ -502,7 +502,7 @@ def flatten_min(input_list: list,
     >>> print(flatten_min(blist, default=-100))
     -100
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     # not very elegant, but min(input, key=None) raises "TypeError: 'NoneType'
     # object is not callable". Meanwhile, sorted(input, key=None) works exactly
@@ -545,7 +545,7 @@ def flatten_single_type(input_list: list) -> bool:
     >>> flatools.flatten_single_type(alist)
     False
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return len(set(map(type, flatten(input_list)))) == 1
 
@@ -582,6 +582,6 @@ def flatten_mixed_type(input_list: list) -> bool:
     >>> flatools.flatten_mixed_type(alist)
     False
     """
-    if not (isinstance(input_list, list)):
+    if not isinstance(input_list, list):
         raise TypeError('input_list should be a \'list\'')
     return len(set(map(type, flatten(input_list)))) > 1

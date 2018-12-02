@@ -23,8 +23,13 @@ This package contains three modules: `flatools`, `iterz` and `llogic`. The compl
 * `flatools.flatten(input_list)`
 * `flatools.pflatten(input_list[, depth])`
 * `iterz.zip_cycle(*input_iters)`
+* `llogic.difference(list_1, list_2)`
+* `llogic.intersection(list_1, list_2)`
+* `llogic.is_contained(list_1, list_2)`
 * `llogic.mixed_type(input_list)`
 * `llogic.single_type(input_list)`
+* `llogic.symmetric_difference(list_1, list_2)`
+* `llogic.union(list_1, list_2)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
