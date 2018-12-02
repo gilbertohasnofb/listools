@@ -35,12 +35,12 @@ from functools import reduce
 from math import gcd as _gcd
 
 
-def _lcm(a, b):
+def _lcm(i, j):
     r"""Return the least common multiple of two numbers
     """
-    if (a, b) == (0, 0):
+    if (i, j) == (0, 0):
         return 0
-    return int(a * b / _gcd(a, b))
+    return int(i * j / _gcd(i, j))
 
 
 def list_lcm(input_list: list) -> int:
