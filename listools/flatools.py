@@ -315,7 +315,7 @@ def flatten_zip_cycle(*input_lists) -> tuple:
 def flatten_sorted(input_list: list,
                    *,
                    key: 'function' = None,
-                   reverse: bool = False,
+                   reverse: bool = False
                    ) -> list:
     r"""flatools.flatten_sorted(input_list, *[, key, reverse])
 
@@ -396,7 +396,7 @@ def flatten_reverse(input_list: list) -> list:
 def flatten_max(input_list: list,
                 *,
                 key: 'function' = None,
-                default=None,
+                default=None
                 ) -> list:
     r"""flatools.flatten_max(input_list, *[, key, default])
 
@@ -456,7 +456,7 @@ def flatten_max(input_list: list,
 def flatten_min(input_list: list,
                 *,
                 key: 'function' = None,
-                default=None,
+                default=None
                 ) -> list:
     r"""flatools.flatten_min(input_list, *[, key, default])
 
