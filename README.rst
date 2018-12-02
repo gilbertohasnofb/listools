@@ -7,7 +7,7 @@ listools
 
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
-This package contains four modules: `flatools`, `iterz`, `llogic` and `listutils`. The complete list of functions available is:
+This package contains four modules: `flatools`, `iterz`, `listutils` and `llogic`. The complete list of functions available is:
 
 * `flatools.flatten_index(element, input_list)`
 * `flatools.flatten_join(*input_lists)`
@@ -32,6 +32,10 @@ This package contains four modules: `flatools`, `iterz`, `llogic` and `listutils
 * `iterz.zip_longest(*input_iters[, default])`
 * `iterz.zip_syzygy(*input_iters)`
 
+* `listutils.list_lcm(input_list)`
+* `listutils.list_mask(input_list, mask)`
+* `listutils.list_gcd(input_list)`
+
 * `llogic.difference(list_1, list_2)`
 * `llogic.intersection(list_1, list_2)`
 * `llogic.is_contained(list_1, list_2)`
@@ -39,10 +43,6 @@ This package contains four modules: `flatools`, `iterz`, `llogic` and `listutils
 * `llogic.single_type(input_list)`
 * `llogic.symmetric_difference(list_1, list_2)`
 * `llogic.union(list_1, list_2)`
-
-* `listutils.list_lcm(input_list)`
-* `listutils.list_mask(input_list, mask)`
-* `listutils.list_gcd(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
