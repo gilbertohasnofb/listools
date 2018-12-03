@@ -58,5 +58,5 @@ from listools.llogic import *
 from listools.listutils import *
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "2.1.2"
+__version__ = "2.1.3"
 __all__ = ['flatools', 'iterz', 'listutils', 'llogic']
