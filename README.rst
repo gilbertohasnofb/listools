@@ -47,6 +47,8 @@ All functions have a `__doc__` attribute with usage instructions.
 
 Documentation is available at https://gilbertohasnofb.github.io/listools-docs/.
 
+A pdf version of the documentation is also available in the `docs` directory.
+
 Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library is published under the MIT License.
