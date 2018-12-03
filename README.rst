@@ -5,8 +5,6 @@ listools
 
 `listools` is a Python 3 package of which provides utility functions for dealing with lists in Python 3. `listools` supports Python version 3.5 and newer. You can install it using `pip install listools`.
 
-Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
-
 This package contains four modules: `flatools`, `iterz`, `listutils` and `llogic`. The complete list of functions available is:
 
 * `flatools.flatten_index(element, input_list)`
@@ -46,6 +44,10 @@ This package contains four modules: `flatools`, `iterz`, `listutils` and `llogic
 * `llogic.union(list_1, list_2)`
 
 All functions have a `__doc__` attribute with usage instructions.
+
+Documentation is available at https://gilbertohasnofb.github.io/listools-docs/.
+
+Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 
 This library is published under the MIT License.
 

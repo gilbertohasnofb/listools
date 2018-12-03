@@ -2,8 +2,6 @@
 dealing with lists in Python 3. `listools` supports Python version 3.5 and
 newer. You can install it using `pip install listools`.
 
-Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
-
 This package contains four modules: `flatools`, `iterz`, `listutils` and
 `llogic`. The complete list of functions available is:
 
@@ -45,6 +43,10 @@ This package contains four modules: `flatools`, `iterz`, `listutils` and
 
 All functions have a `__doc__` attribute with usage instructions.
 
+Documentation is available at https://gilbertohasnofb.github.io/listools-docs/.
+
+Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
+
 This library is published under the MIT License.
 """
 
@@ -54,5 +56,5 @@ from listools.llogic import *
 from listools.listutils import *
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 __all__ = ['flatools', 'iterz', 'listutils', 'llogic']
