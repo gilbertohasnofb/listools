@@ -438,7 +438,7 @@ def cycle_until_index(input_iter, i: int):
         raise TypeError('\'i\' must be \'int\'')
     if len(input_iter) < 1:
         return
-    for item in input_iter[:i + 1]:
+    for item in input_iter[: i + 1]:
         yield item
 
 
