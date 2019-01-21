@@ -27,6 +27,10 @@ operations to lists. The full list of available functions is:
 * `listutils.list_mask(input_list, mask)`
 * `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
+* `listutils.is_ascending(input_list[, step])`
+* `listutils.is_descending(input_list[, step])`
+* `listutils.period_len(input_list[, ignore_partial_cycles])`
+* `listutils.scrambled(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
@@ -35,6 +39,7 @@ This library is published under the MIT License.
 
 from functools import reduce
 from math import gcd as _gcd
+import random
 
 
 def _lcm(i, j):
@@ -191,3 +196,184 @@ def list_mask_cycle(input_list: list, mask: list) -> list:
         if mask_value:
             output_list.append(item)
     return output_list
+
+def is_ascending(input_list: list, step: int = 1) -> bool:
+    r"""listutils.is_ascending(input_list[, step])
+
+    This function returns True if the input list is ascending with a fixed
+    step, otherwise it returns False. Usage:
+
+    >>> alist = [0, 1, 2, 3]
+    >>> listutils.is_ascending(alist)
+    True
+
+    The initial value can be other than zero:
+
+    >>> alist = [10, 11, 12]
+    >>> listutils.is_ascending(alist)
+    True
+
+    The list can also have negative elements:
+
+    >>> alist = [-2, -1, 0, 1, 2]
+    >>> listutils.is_ascending(alist)
+    True
+
+    It will return False if the list is not ascending:
+
+    >>> alist = [6, 5, 9, 2]
+    >>> listutils.is_ascending(alist)
+    False
+
+    By default, the function uses steps of size 1 so the list below is not
+    considered as ascending:
+
+    >>> alist = [1, 3, 5, 7]
+    >>> listutils.is_ascending(alist)
+    False
+
+    But the user can set the step argument to any value greater than one:
+
+    >>> alist = [1, 3, 5, 7]
+    >>> step = 2
+    >>> listutils.is_ascending(alist, step)
+    True
+    """
+    if not isinstance(input_list, list):
+        raise TypeError('\'input_list\' must be \'list\'')
+    if not isinstance(step, int):
+        raise TypeError('\'step\' must be \'int\'')
+    if step < 1:
+        raise ValueError('\'step\' must be > 0')
+    aux_list = list(range(min(input_list), max(input_list)+1, step))
+    return input_list == aux_list
+
+
+def is_descending(input_list: list, step: int = -1) -> bool:
+    r"""listutils.is_descending(input_list[, step])
+
+    This function returns True if the input list is descending with a fixed
+    step, otherwise it returns False. Usage:
+
+    >>> alist = [3, 2, 1, 0]
+    >>> listutils.is_descending(alist)
+    True
+
+    The final value can be other than zero:
+
+    >>> alist = [12, 11, 10]
+    >>> listutils.is_descending(alist)
+    True
+
+    The list can also have negative elements:
+
+    >>> alist = [2, 1, 0, -1, -2]
+    >>> listutils.is_descending(alist)
+    True
+
+    It will return False if the list is not ascending:
+
+    >>> alist = [6, 5, 9, 2]
+    >>> listutils.is_descending(alist)
+    False
+
+    By default, the function uses steps of size 1 so the list below is not
+    considered as ascending:
+
+    >>> alist = [7, 5, 3, 1]
+    >>> listutils.is_descending(alist)
+    False
+
+    But the user can set the step argument to any value less than one:
+
+    >>> alist = [7, 5, 3, 1]
+    >>> step = -2
+    >>> listutils.is_descending(alist, step)
+    True
+    """
+    if not isinstance(input_list, list):
+        raise TypeError('\'input_list\' must be \'list\'')
+    if not isinstance(step, int):
+        raise TypeError('\'step\' must be \'int\'')
+    if step > 1:
+        raise ValueError('\'step\' must be < 0')
+    aux_list = list(range(max(input_list), min(input_list)-1, step))
+    return input_list == aux_list
+
+
+def period_len(input_list: list, ignore_partial_cycles: bool = False) -> int:
+    r"""listutils.period_len(input_list[, ignore_partial_cycles])
+
+    This function returns the length of the period of an input list. Usage:
+
+    >>> alist = [1, 2, 3, 1, 2, 3, 1, 2, 3]
+    >>> listutils.period_len(alist)
+    3
+
+    If a list is not periodic, the period length equals to the list size:
+
+    >>> alist = [3, 1, 4, 1, 5, 9, 2, 6]
+    >>> listutils.period_len(alist)
+    8
+
+    This function detects periodicity in lists with partial cycles:
+
+    >>> alist = [1, 2, 3, 1, 2, 3, 1]
+    >>> listutils.period_len(alist)
+    3
+
+    To disable this behaviour, use the ignore_partial_cycles argument:
+
+    >>> alist = [1, 2, 3, 1, 2, 3, 1]
+    >>> listutils.period_len(alist, ignore_partial_cycles=True)
+    7
+
+    If a list does not contain partial cycles, the ignore_partial_cycles
+    argument does not affect the result:
+
+    >>> alist = [1, 2, 3, 1, 2, 3]
+    >>> listutils.period_len(alist, ignore_partial_cycles=True)
+    3
+    """
+    if not isinstance(input_list, list):
+        raise TypeError('\'input_list\' must be \'list\'')
+    if not isinstance(ignore_partial_cycles, bool):
+        raise TypeError('\'ignore_partial_cycles\' must be \'bool\'')
+    for period in range(1, len(input_list)):
+        if all(input_list[n] == input_list[n + period] \
+               for n in range(len(input_list) - period)):
+            if ignore_partial_cycles:
+                if len(input_list) % period != 0:
+                    return len(input_list)
+            return period
+    return len(input_list)
+
+
+def scrambled(input_list: list) -> list:
+    r"""listutils.scrambled(input_list)
+
+    This function returns a scrambled list with the same elements as the input
+    list. Usage:
+
+    >>> alist = [0, 1, 2, 3, 4]
+    >>> listutils.scrambled(alist)
+    [2, 1, 4, 0, 3]
+
+    It differs from random.shuffle() since listutils.scrambled() outputs a new
+    list, preserving the input one:
+
+    >>> alist = [0, 1, 2, 3, 4]
+    >>> listutils.scrambled(alist)
+    [2, 1, 4, 0, 3]
+    >>> alist
+    [0, 1, 2, 3, 4]
+    >>> import random
+    >>> random.shuffle(alist)
+    >>> alist
+    [3, 2, 1, 4, 0]
+    """
+    if not isinstance(input_list, list):
+        raise TypeError('\'input_list\' must be \'list\'')
+    scrambled_list = input_list[:]
+    random.shuffle(scrambled_list)
+    return scrambled_list

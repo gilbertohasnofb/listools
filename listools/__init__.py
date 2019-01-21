@@ -32,6 +32,10 @@ This package contains four modules: `flatools`, `iterz`, `listutils` and
 * `listutils.list_mask(input_list, mask)`
 * `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
+* `listutils.is_ascending(input_list[, step])`
+* `listutils.is_descending(input_list[, step])`
+* `listutils.period_len(input_list[, ignore_partial_cycles])`
+* `listutils.scrambled(input_list)`
 
 * `llogic.difference(list_1, list_2)`
 * `llogic.intersection(list_1, list_2)`
@@ -58,5 +62,5 @@ from listools.llogic import *
 from listools.listutils import *
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "2.1.3"
+__version__ = "2.2.0"
 __all__ = ['flatools', 'iterz', 'listutils', 'llogic']
