@@ -27,8 +27,6 @@ operations to lists. The full list of available functions is:
 * `listutils.list_mask(input_list, mask)`
 * `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
-* `listutils.is_ascending(input_list[, step])`
-* `listutils.is_descending(input_list[, step])`
 * `listutils.period_len(input_list[, ignore_partial_cycles])`
 * `listutils.scrambled(input_list)`
 
@@ -196,109 +194,6 @@ def list_mask_cycle(input_list: list, mask: list) -> list:
         if mask_value:
             output_list.append(item)
     return output_list
-
-def is_ascending(input_list: list, step: int = 1) -> bool:
-    r"""listutils.is_ascending(input_list[, step])
-
-    This function returns True if the input list is ascending with a fixed
-    step, otherwise it returns False. Usage:
-
-    >>> alist = [0, 1, 2, 3]
-    >>> listutils.is_ascending(alist)
-    True
-
-    The initial value can be other than zero:
-
-    >>> alist = [10, 11, 12]
-    >>> listutils.is_ascending(alist)
-    True
-
-    The list can also have negative elements:
-
-    >>> alist = [-2, -1, 0, 1, 2]
-    >>> listutils.is_ascending(alist)
-    True
-
-    It will return False if the list is not ascending:
-
-    >>> alist = [6, 5, 9, 2]
-    >>> listutils.is_ascending(alist)
-    False
-
-    By default, the function uses steps of size 1 so the list below is not
-    considered as ascending:
-
-    >>> alist = [1, 3, 5, 7]
-    >>> listutils.is_ascending(alist)
-    False
-
-    But the user can set the step argument to any value greater than one:
-
-    >>> alist = [1, 3, 5, 7]
-    >>> step = 2
-    >>> listutils.is_ascending(alist, step)
-    True
-    """
-    if not isinstance(input_list, list):
-        raise TypeError('\'input_list\' must be \'list\'')
-    if not isinstance(step, int):
-        raise TypeError('\'step\' must be \'int\'')
-    if step < 1:
-        raise ValueError('\'step\' must be > 0')
-    aux_list = list(range(min(input_list), max(input_list)+1, step))
-    return input_list == aux_list
-
-
-def is_descending(input_list: list, step: int = -1) -> bool:
-    r"""listutils.is_descending(input_list[, step])
-
-    This function returns True if the input list is descending with a fixed
-    step, otherwise it returns False. Usage:
-
-    >>> alist = [3, 2, 1, 0]
-    >>> listutils.is_descending(alist)
-    True
-
-    The final value can be other than zero:
-
-    >>> alist = [12, 11, 10]
-    >>> listutils.is_descending(alist)
-    True
-
-    The list can also have negative elements:
-
-    >>> alist = [2, 1, 0, -1, -2]
-    >>> listutils.is_descending(alist)
-    True
-
-    It will return False if the list is not ascending:
-
-    >>> alist = [6, 5, 9, 2]
-    >>> listutils.is_descending(alist)
-    False
-
-    By default, the function uses steps of size 1 so the list below is not
-    considered as ascending:
-
-    >>> alist = [7, 5, 3, 1]
-    >>> listutils.is_descending(alist)
-    False
-
-    But the user can set the step argument to any value less than one:
-
-    >>> alist = [7, 5, 3, 1]
-    >>> step = -2
-    >>> listutils.is_descending(alist, step)
-    True
-    """
-    if not isinstance(input_list, list):
-        raise TypeError('\'input_list\' must be \'list\'')
-    if not isinstance(step, int):
-        raise TypeError('\'step\' must be \'int\'')
-    if step > 1:
-        raise ValueError('\'step\' must be < 0')
-    aux_list = list(range(max(input_list), min(input_list)-1, step))
-    return input_list == aux_list
 
 
 def period_len(input_list: list, ignore_partial_cycles: bool = False) -> int:

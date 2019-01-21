@@ -32,14 +32,14 @@ This package contains four modules: `flatools`, `iterz`, `listutils` and
 * `listutils.list_mask(input_list, mask)`
 * `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
-* `listutils.is_ascending(input_list[, step])`
-* `listutils.is_descending(input_list[, step])`
 * `listutils.period_len(input_list[, ignore_partial_cycles])`
 * `listutils.scrambled(input_list)`
 
 * `llogic.difference(list_1, list_2)`
 * `llogic.intersection(list_1, list_2)`
+* `llogic.is_ascending(input_list[, step])`
 * `llogic.is_contained(list_1, list_2)`
+* `llogic.is_descending(input_list[, step])`
 * `llogic.mixed_type(input_list)`
 * `llogic.single_type(input_list)`
 * `llogic.symmetric_difference(list_1, list_2)`

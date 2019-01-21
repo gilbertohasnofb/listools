@@ -96,58 +96,6 @@ def test_list_mask_cycle():
         listutils.list_mask_cycle(alist, mask)
 
 
-def test_is_ascending():
-    alist = [0, 1, 2, 3]
-    assert listutils.is_ascending(alist)
-
-    alist = [10, 11, 12]
-    assert listutils.is_ascending(alist)
-
-    alist = [-2, -1, 0, 1, 2]
-    assert listutils.is_ascending(alist)
-
-    alist = [6, 5, 9, 2]
-    assert not listutils.is_ascending(alist)
-
-    alist = [1, 3, 5, 7]
-    assert not listutils.is_ascending(alist)
-
-    alist = [1, 3, 5, 7]
-    step = 2
-    assert listutils.is_ascending(alist, step)
-
-    alist = [1, 3, 5, 7]
-    step = -2
-    with pytest.raises(ValueError):
-        listutils.is_ascending(alist, step)
-
-
-def test_is_descending():
-    alist = [3, 2, 1, 0]
-    assert listutils.is_descending(alist)
-
-    alist = [12, 11, 10]
-    assert listutils.is_descending(alist)
-
-    alist = [2, 1, 0, -1, -2]
-    assert listutils.is_descending(alist)
-
-    alist = [6, 5, 9, 2]
-    assert not listutils.is_descending(alist)
-
-    alist = [7, 5, 3, 1]
-    assert not listutils.is_descending(alist)
-
-    alist = [7, 5, 3, 1]
-    step = -2
-    assert listutils.is_descending(alist, step)
-
-    alist = [7, 5, 3, 1]
-    step = 2
-    with pytest.raises(ValueError):
-        listutils.is_descending(alist, step)
-
-
 def test_period_len():
     alist = [1, 2, 3, 1, 2, 3, 1, 2, 3]
     assert listutils.period_len(alist) == 3

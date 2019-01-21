@@ -1,6 +1,7 @@
 import pytest
 from listools import llogic
 
+
 def test_single_type():
     alist = [3, 4, 1, 5, 2]
     assert llogic.single_type(alist) == True
@@ -134,3 +135,55 @@ def test_is_contained():
     alist = [1, 2.3, 'foo', (3, 7), 7+3j]
     blist = ['foo', 7+3j, (3, 7)]
     assert llogic.is_contained(blist, alist) == True
+
+
+def test_is_ascending():
+    alist = [0, 1, 2, 3]
+    assert llogic.is_ascending(alist)
+
+    alist = [10, 11, 12]
+    assert llogic.is_ascending(alist)
+
+    alist = [-2, -1, 0, 1, 2]
+    assert llogic.is_ascending(alist)
+
+    alist = [6, 5, 9, 2]
+    assert not llogic.is_ascending(alist)
+
+    alist = [1, 3, 5, 7]
+    assert not llogic.is_ascending(alist)
+
+    alist = [1, 3, 5, 7]
+    step = 2
+    assert llogic.is_ascending(alist, step)
+
+    alist = [1, 3, 5, 7]
+    step = -2
+    with pytest.raises(ValueError):
+        llogic.is_ascending(alist, step)
+
+
+def test_is_descending():
+    alist = [3, 2, 1, 0]
+    assert llogic.is_descending(alist)
+
+    alist = [12, 11, 10]
+    assert llogic.is_descending(alist)
+
+    alist = [2, 1, 0, -1, -2]
+    assert llogic.is_descending(alist)
+
+    alist = [6, 5, 9, 2]
+    assert not llogic.is_descending(alist)
+
+    alist = [7, 5, 3, 1]
+    assert not llogic.is_descending(alist)
+
+    alist = [7, 5, 3, 1]
+    step = -2
+    assert llogic.is_descending(alist, step)
+
+    alist = [7, 5, 3, 1]
+    step = 2
+    with pytest.raises(ValueError):
+        llogic.is_descending(alist, step)
