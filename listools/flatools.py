@@ -446,7 +446,7 @@ def flatten_max(input_list: list,
         raise TypeError('\'input_list\' must be \'list\'')
     # not very elegant, but max(input, key=None) raises "TypeError: 'NoneType'
     # object is not callable. Other functions such as sorted(input, key=None)
-    # works exactly as expected when key=None.
+    # work exactly as expected when key=None.
     if key:
         return max(flatten(input_list), key=key, default=default)
     else:
