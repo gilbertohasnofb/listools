@@ -206,8 +206,8 @@ def flatten_sum(input_list: list, start=0):
 def flatten_len(input_list: list) -> int:
     r"""flatools.flatten_len(input_list)
 
-    Returns the flatten_length of a flatten list (that is, it counts all
-    elements in all of its subslists). Usage:
+    Returns the length of a flatten list (that is, it counts all elements in
+    all of its subslists). Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
     >>> flatools.flatten_len(alist)
@@ -227,8 +227,8 @@ def flatten_len(input_list: list) -> int:
 def flatten_index(element, input_list: list) -> int:
     r"""flatools.flatten_index(input_list)
 
-    Returns the length of a flatten list (that is, it counts all elements in
-    all of its subslists). Usage:
+    Returns the index of the first instance of an element in a flatten list.
+    Usage:
 
     >>> alist = [[1, 2], [3, 4], [5, 6]]
     >>> flatools.flatten_index(3, alist)
@@ -257,8 +257,8 @@ def flatten_index(element, input_list: list) -> int:
 def flatten_zip_cycle(*input_lists) -> tuple:
     r"""flatools.flatten_zip_cycle(*input_lists)
 
-    This function is very nearly identical to flatools.flatten_zip_cycle except
-    that it also flattens all lists before zipping and cycling them. Usage:
+    This function is nearly identical to iterz.zip_cycle except that it also
+    flattens all lists before zipping and cycling them. Usage:
 
     >>> alist = [1, 2]
     >>> blist = [4, [5, 6, 7], 8]

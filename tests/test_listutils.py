@@ -116,11 +116,11 @@ def test_period_len():
     assert listutils.period_len(alist) == 8
 
 
-def test_scrambled():
+def test_shuffle():
     alist = [0, 1, 2, 3, 4, 5]
-    blist = listutils.scrambled(alist)
+    blist = listutils.shuffle(alist)
     assert blist
 
     alist = []
-    blist = listutils.scrambled(alist)
+    blist = listutils.shuffle(alist)
     assert blist == []

@@ -28,7 +28,7 @@ operations to lists. The full list of available functions is:
 * `listutils.list_mask_cycle(input_list, mask)`
 * `listutils.list_gcd(input_list)`
 * `listutils.period_len(input_list[, ignore_partial_cycles])`
-* `listutils.scrambled(input_list)`
+* `listutils.shuffle(input_list)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
@@ -244,21 +244,21 @@ def period_len(input_list: list, ignore_partial_cycles: bool = False) -> int:
     return len(input_list)
 
 
-def scrambled(input_list: list) -> list:
-    r"""listutils.scrambled(input_list)
+def shuffle(input_list: list) -> list:
+    r"""listutils.shuffle(input_list)
 
-    This function returns a scrambled list with the same elements as the input
+    This function returns a shuffled list with the same elements as the input
     list. Usage:
 
     >>> alist = [0, 1, 2, 3, 4]
-    >>> listutils.scrambled(alist)
+    >>> listutils.shuffle(alist)
     [2, 1, 4, 0, 3]
 
-    It differs from random.shuffle() since listutils.scrambled() outputs a new
+    It differs from random.shuffle() since listutils.shuffle() outputs a new
     list, preserving the input one:
 
     >>> alist = [0, 1, 2, 3, 4]
-    >>> listutils.scrambled(alist)
+    >>> listutils.shuffle(alist)
     [2, 1, 4, 0, 3]
     >>> alist
     [0, 1, 2, 3, 4]
@@ -269,6 +269,6 @@ def scrambled(input_list: list) -> list:
     """
     if not isinstance(input_list, list):
         raise TypeError('\'input_list\' must be \'list\'')
-    scrambled_list = input_list[:]
-    random.shuffle(scrambled_list)
-    return scrambled_list
+    shuffled_list = input_list[:]
+    random.shuffle(shuffled_list)
+    return shuffled_list

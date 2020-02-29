@@ -187,7 +187,7 @@ def zip_inf_cycle(*input_iters) -> tuple:
     >>> alist = [1, 2]
     >>> blist = [4, 5, 6, 7, 8]
     >>> zip_inf_cycle_iter = iterz.zip_inf_cycle(alist, blist)
-    >>> for i in range(9):
+    >>> for _ in range(9):
     ...     print(zip_inf_cycle_iter.__next__())
     1 4
     2 5
@@ -328,7 +328,7 @@ def inf_cycle(input_iter):
 
     >>> alist = [1, 2, 4, 8]
     >>> inf_cycle_iter = iterz.inf_cycle(alist)
-    >>> for i in range(9):
+    >>> for _ in range(9):
     ...     print(inf_cycle_iter.__next__())
     1
     2
@@ -451,14 +451,14 @@ def iter_mask(input_iter, mask: list) -> tuple:
 
     >>> alist = [1, 2, 3]
     >>> mask = [True, False, True]
-    >>> for item in listutils.iter_mask(alist, mask):
+    >>> for item in iterz.iter_mask(alist, mask):
     ...     print(item)
     1
     3
 
     >>> alist = [1, 2, 3, 4, 5]
     >>> mask = [1, 0, 0, 1, 0]
-    >>> for item in listutils.iter_mask(alist, mask):
+    >>> for item in iterz.iter_mask(alist, mask):
     ...     print(item)
     1
     4
@@ -467,7 +467,7 @@ def iter_mask(input_iter, mask: list) -> tuple:
 
     >>> alist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     >>> mask = [1, 0]
-    >>> for item in listutils.iter_mask(alist, mask):
+    >>> for item in iterz.iter_mask(alist, mask):
     ...     print(item)
     1
     3
@@ -479,7 +479,7 @@ def iter_mask(input_iter, mask: list) -> tuple:
 
     >>> alist = [1, 2.2, True, 'foo', (1, 4), None, 3+2j, {'a': 1}]
     >>> mask = [True, False, True]
-    >>> for item in listutils.iter_mask(alist, mask):
+    >>> for item in iterz.iter_mask(alist, mask):
     ...     print(item)
     1
     True
