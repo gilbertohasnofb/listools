@@ -14,10 +14,10 @@ Bugs can be reported to https://github.com/gilbertohasnofb/listools/issues.
 This library is published under the MIT License.
 """
 
-from .flatools import *
-from .iterz import *
-from .llogic import *
-from .listutils import *
+from . import flatools
+from . import iterz
+from . import llogic
+from . import listutils
 
 __author__ = "Gilberto Agostinho <gilbertohasnofb@gmail.com>"
-__version__ = "2.2.2"
+__version__ = "2.3.1"
