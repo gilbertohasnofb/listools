@@ -21,26 +21,20 @@
 # SOFTWARE.
 
 """The module `listutils` contains functions that apply simple mathematical
-operations to lists. The full list of available functions is:
-
-* `listutils.list_lcm(input_list)`
-* `listutils.list_mask(input_list, mask)`
-* `listutils.list_mask_cycle(input_list, mask)`
-* `listutils.list_gcd(input_list)`
-* `listutils.period_len(input_list[, ignore_partial_cycles])`
-* `listutils.shuffle(input_list)`
+operations to lists.
 
 All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.
 """
 
-from functools import reduce
+from functools import reduce as _reduce
 from math import gcd as _gcd
+from typing import List
 import random
 
 
-def _lcm(i, j):
+def _lcm(i: int, j: int) -> int:
     r"""Return the least common multiple of two numbers
     """
     if (i, j) == (0, 0):
@@ -48,7 +42,7 @@ def _lcm(i, j):
     return int(i * j / _gcd(i, j))
 
 
-def list_lcm(input_list: list) -> int:
+def list_lcm(input_list: List[int]) -> int:
     r"""listutils.list_lcm(input_list)
 
     This function returns the least common multiple of a list of integers.
@@ -64,12 +58,14 @@ def list_lcm(input_list: list) -> int:
     """
     if not isinstance(input_list, list):
         raise TypeError('\'input_list\' must be \'list\'')
+    if not all(isinstance(element, int) for element in input_list):
+        raise TypeError('all elements of \'input_list\' must be \'int\'')
     if len(input_list) == 0:
         raise IndexError('\'input_list\' must have len > 0')
-    return reduce(_lcm, input_list)
+    return _reduce(_lcm, input_list)
 
 
-def list_gcd(input_list: list) -> int:
+def list_gcd(input_list: List[int]) -> int:
     r"""listutils.list_gcd(input_list)
 
     This function returns the greatest common divisor of a list of integers.
@@ -85,9 +81,11 @@ def list_gcd(input_list: list) -> int:
     """
     if not isinstance(input_list, list):
         raise TypeError('\'input_list\' must be \'list\'')
+    if not all(isinstance(element, int) for element in input_list):
+        raise TypeError('all elements of \'input_list\' must be \'int\'')
     if len(input_list) == 0:
         raise IndexError('\'input_list\' must have len > 0')
-    return reduce(_gcd, input_list)
+    return _reduce(_gcd, input_list)
 
 
 def list_mask(input_list: list, mask: list) -> list:

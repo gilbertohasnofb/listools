@@ -21,17 +21,7 @@
 # SOFTWARE.
 
 """The module `llogic` contains functions that deal with logic operations on
-lists. The full list of available functions is:
-
-* `llogic.difference(list_1, list_2)`
-* `llogic.intersection(list_1, list_2)`
-* `llogic.is_ascending(input_list[, step])`
-* `llogic.is_contained(list_1, list_2)`
-* `llogic.is_descending(input_list[, step])`
-* `llogic.mixed_type(input_list)`
-* `llogic.single_type(input_list)`
-* `llogic.symmetric_difference(list_1, list_2)`
-* `llogic.union(list_1, list_2)`
+lists.
 
 All functions have a `__doc__` attribute with usage instructions.
 

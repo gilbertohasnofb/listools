@@ -21,24 +21,14 @@
 # SOFTWARE.
 
 """The module `iterz` contains functions that manipualte lists as iterators.
-The full list of available functions is:
-
-* `iterz.cycle_until_index(input_iter, i)`
-* `iterz.inf_cycle(input_iter)`
-* `iterz.iter_mask(input_iter, mask)`
-* `iterz.ncycles(input_iter, n)`
-* `iterz.zip_cycle(*input_iters)`
-* `iterz.zip_inf_cycle(*input_iters)`
-* `iterz.zip_longest(*input_iters[, default])`
-* `iterz.zip_syzygy(*input_iters)`
 
 All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.
 """
 
-from itertools import count
-from .listutils import list_lcm
+from itertools import count as _count
+from .listutils import list_lcm as _list_lcm
 
 
 def zip_cycle(*input_iters) -> tuple:
@@ -242,7 +232,7 @@ def zip_inf_cycle(*input_iters) -> tuple:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
     if any(len(input_iter) == 0 for input_iter in input_iters):
         raise IndexError('all elements of \'*input_iters\' must have len > 0')
-    for i in count():
+    for i in _count():
         output_list = []
         for input_iter in input_iters:
             output_list.append(input_iter[i % len(input_iter)])
@@ -313,7 +303,7 @@ def zip_syzygy(*input_iters) -> tuple:
             raise TypeError('\'*input_iters\' must be one or more \'iter\'')
     if any(len(input_iter) == 0 for input_iter in input_iters):
         raise IndexError('all elements of \'*input_iters\' must have len > 0')
-    lcm = list_lcm([len(input_iter) for input_iter in input_iters])
+    lcm = _list_lcm([len(input_iter) for input_iter in input_iters])
     for i in range(lcm):
         output_list = []
         for input_iter in input_iters:
@@ -358,7 +348,7 @@ def inf_cycle(input_iter):
         raise TypeError('\'input_iter\' must be \'iter\'')
     if len(input_iter) < 1:
         return
-    for i in count():
+    for i in _count():
         yield input_iter[i % len(input_iter)]
 
 
@@ -442,7 +432,7 @@ def cycle_until_index(input_iter, i: int):
         yield item
 
 
-def iter_mask(input_iter, mask: list) -> tuple:
+def iter_mask(input_iter, mask: list):
     r"""iterz.iter_mask(input_iter, mask)
 
     This function takes an input iterator and applies a mask to it, yielding

@@ -20,27 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""The module `flatools` contains functions that deal with flatten lists. The
-full list of available functions is:
-
-* `flatools.flatten_index(element, input_list)`
-* `flatools.flatten_join(*input_lists)`
-* `flatools.flatten_len(input_list)`
-* `flatools.flatten_max(input_list, *[, key, default])`
-* `flatools.flatten_min(input_list, *[, key, default])`
-* `flatools.flatten_mixed_type(input_list)`
-* `flatools.flatten_reverse(input_list)`
-* `flatools.flatten_single_type(input_list)`
-* `flatools.flatten_sorted(input_list, *[, key, reverse])`
-* `flatools.flatten_sum(input_list[, start])`
-* `flatools.flatten_zip_cycle(*input_lists)`
-* `flatools.flatten(input_list)`
-* `flatools.pflatten(input_list[, depth])`
+"""The module `flatools` contains functions that deal with flatten lists.
 
 All functions have a `__doc__` attribute with usage instructions.
 
 This library is published under the MIT License.
 """
+
+from numbers import Number
 
 
 def flatten(input_list: list) -> list:
@@ -397,10 +384,10 @@ def flatten_max(input_list: list,
                 *,
                 key: 'function' = None,
                 default=None
-                ) -> list:
+                ) -> Number:
     r"""flatools.flatten_max(input_list, *[, key, default])
 
-    Finds the largest element of a  flattened list containing any number of
+    Finds the largest element of a flattened list containing any number of
     nested subslists. Usage:
 
     >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
@@ -457,7 +444,7 @@ def flatten_min(input_list: list,
                 *,
                 key: 'function' = None,
                 default=None
-                ) -> list:
+                ) -> Number:
     r"""flatools.flatten_min(input_list, *[, key, default])
 
     Finds the smallest element of a  flattened list containing any number of
