@@ -1,5 +1,6 @@
 import pytest
 from listools import listutils
+import random
 
 
 def test_list_lcm():
@@ -117,9 +118,10 @@ def test_period_len():
 
 
 def test_shuffle():
+    random.seed(15436)
     alist = [0, 1, 2, 3, 4, 5]
     blist = listutils.shuffle(alist)
-    assert blist
+    assert blist == [3, 5, 0, 2, 4, 1]
 
     alist = []
     blist = listutils.shuffle(alist)

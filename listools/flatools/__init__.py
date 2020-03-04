@@ -9,6 +9,7 @@ This library is published under the MIT License.
 """
 
 from .flatten import flatten
+from .flatten_choice import flatten_choice
 from .flatten_index import flatten_index
 from .flatten_join import flatten_join
 from .flatten_len import flatten_len

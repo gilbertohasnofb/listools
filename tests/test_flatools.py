@@ -1,5 +1,6 @@
 import pytest
 from listools import flatools
+import random
 
 
 def test_flatten():
@@ -277,3 +278,15 @@ def test_flatten_mixed_type():
 
     alist = []
     assert flatools.flatten_mixed_type(alist) == False
+
+
+def test_flatten_choice():
+    random.seed(87452)
+    alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
+    assert flatools.flatten_choice(alist) == 9
+
+    alist = [1, 5, [3, [2, 4]]]
+    assert flatools.flatten_choice(alist) == 4
+
+    alist = [1, [2.2, True], ['foo', [(1, 4), None]], [3+2j, {'a': 1}]]
+    assert flatools.flatten_choice(alist) == (1, 4)
