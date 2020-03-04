@@ -28,6 +28,10 @@ flatten
 -------
 .. autofunction:: listools.flatools.flatten
 
+flatten_choice
+-------------
+.. autofunction:: listools.flatools.flatten_choice
+
 flatten_index
 -------------
 .. autofunction:: listools.flatools.flatten_index
