@@ -9,7 +9,7 @@ def flatten_sorted(input_list: list,
     r"""flatools.flatten_sorted(input_list, *[, key, reverse])
 
     Completely flattens a list containing any number of nested subslists into a
-    flatten_sorted one dimensional list. Usage:
+    sorted one dimensional list. Usage:
 
     >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
     >>> flatools.flatten_sorted(alist)

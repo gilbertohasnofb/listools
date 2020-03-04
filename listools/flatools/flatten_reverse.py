@@ -5,7 +5,7 @@ def flatten_reverse(input_list: list) -> list:
     r"""flatools.flatten_reverse(input_list)
 
     Completely flattens a list containing any number of nested subslists into a
-    flatten_reversely sorted one dimensional list. Usage:
+    reversed one dimensional list. Usage:
 
     >>> alist = [[1, 4], [5, 7], [2], [9, 6, 10], [8, 3]]
     >>> flatools.flatten_reverse(alist)
