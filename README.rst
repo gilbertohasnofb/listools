@@ -17,8 +17,8 @@ This library is published under the MIT License.
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/listools.svg
    :target: https://pypi.python.org/pypi/listools
-.. |Build| image:: https://travis-ci.org/gilbertohasnofb/listools.svg?branch=master
-   :target: https://travis-ci.org/gilbertohasnofb/listools
+.. |Build| image:: https://travis-ci.com/gilbertohasnofb/listools.svg?branch=master
+   :target: https://travis-ci.com/gilbertohasnofb/listools
 .. |Python versions| image:: https://img.shields.io/pypi/pyversions/listools.svg
 .. |License| image:: https://img.shields.io/github/license/gilbertohasnofb/listools.svg
    :target: https://github.com/gilbertohasnofb/listools/blob/master/LICENSE
